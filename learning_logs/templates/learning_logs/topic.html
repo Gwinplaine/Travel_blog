@@ -1,0 +1,36 @@
+{% extends 'learning_logs/base.html' %}
+{% block header %}
+  <h2>{{ topic }}</h2>
+{% endblock header %}
+
+{% block content %}
+<p>
+  <a href="{% url 'new_entry' topic.id %}">Добавить новую статью</a>
+</p>
+{% for entry in entries %}
+  <div class="panel panel-default">
+  <div class="panel-heading">
+  <h5>
+  <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>
+  </h5>
+  </div>
+  <div class="panel-body">
+    {{ entry.text }}
+    <small>
+    <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
+    </small>
+  <p>
+    <small>
+      {{ entry.date_added|date:'M d, Y H:i' }}
+    </small>
+  </p>
+    <small>
+      <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
+    </small>
+  </div>
+  </div> <!-- panel -->
+{% empty %}
+  Упс! По данной теме ещё нет ни одной статьи... Станьте первым, жмите на ссылку
+  "Добавить новую статью"!
+{% endfor %}
+{% endblock content %}

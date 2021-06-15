@@ -1,0 +1,56 @@
+{% extends 'learning_logs/base.html' %}
+{% load bootstrap3 %}
+{% block header %}
+  <h2>{{ entry.title }}</h2>
+{% endblock header %}
+
+{% block content %}
+
+  <div class="panel panel-default">
+  <div class="panel-heading">
+  <h5>
+  Опубликовано {{ entry.date_added|date:'M d, Y H:i' }}
+  </h5>
+  </div>
+  <div class="panel-body">
+    {{ entry.text|linebreaks }}
+    <small>
+      <a href="{% url 'edit_entry' entry.id %}">Edit entry</a>
+    </small>
+
+    <p>Оставить комментарий:</p>
+    <form method="post" action="{% url 'entry' entry.id %}" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    </div>
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Добавить комментарий</button>
+    {% endbuttons %}
+    <input type="hidden" name="next" value="{% url 'entry' entry.id %}" />
+
+
+<p></p>
+<p> Комментарии к статье: </p>
+{% for comment in all_comments %}
+<div class="panel panel-default">
+<div class="panel-heading">
+<h5>
+Комментарий от пользователя {{ comment.name }}
+<p><small>{{comment.created | date:'M d, Y H:i'}}</small></p>
+</h5>
+</div>
+<div class="panel-body">
+  <p>
+  {{ comment.body }}
+  </p>
+  </div>
+
+</div>
+{% endfor %}
+<p>
+<a href="{% url 'entry' entry.id %}">Вернуться к началу статьи "{{ entry }}"</a>
+</p>
+<p>
+  <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы {{ topic }}</a>
+</p>
+  {% endblock content %}
