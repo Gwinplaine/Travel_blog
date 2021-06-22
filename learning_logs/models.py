@@ -12,9 +12,10 @@ class Topic(models.Model):
 class Entry(models.Model):
     '''информация, изученная по теме'''
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50, default='Default')
+    title = models.CharField(max_length=50)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+    like = models.ManyToManyField(User, blank=True)
 
     class Meta:
         verbose_name_plural = 'entries'
@@ -38,3 +39,5 @@ class Comment(models.Model):
 
     #def __str__(self):
     #    return 'Comment by {} on {}'.format(self.name, self.post)
+
+

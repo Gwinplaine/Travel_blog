@@ -25,5 +25,8 @@ urlpatterns = [
        url(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'),
        url(r'^edit_entry/(?P<entry_id>\d+)/$', views.edit_entry, name='edit_entry'),
        url(r'^entry/(?P<entry_id>\d+)/$', views.entry, name='entry'),
+       url(r'^entry/(?P<entry_id>\d+)/add_to_fav/$', views.add_to_fav, name='add_to_fav'),
+       url(r'^entry/(?P<entry_id>\d+)/remove_from_fav/$', views.remove_from_fav, name='remove_from_fav'),
+       url(r'^favourites/$', views.favourites, name='favourites'),
 
 ]

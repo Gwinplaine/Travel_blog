@@ -1,0 +1,37 @@
+{% extends "learning_logs/base.html" %}
+{% block header %}
+  <h2>Избранные статьи</h2>
+{% endblock header %}
+
+{% block content %}
+  <ul>
+    {% for fav in favourites %}
+    <div class="panel panel-default" style="background-color: #c3f6c3">
+    <div class="panel-heading" style="background-color: #c3f6c3">
+
+      <h5>
+      <a href="{% url 'entry' fav.id %}"> {{fav.title}}</a>
+      <small>
+        {{ fav.date_added|date:'M d, Y H:i' }}
+      </small>
+      </h5>
+      </div>
+      <div class="panel-body">
+        {{ fav.text }}
+        <small>
+        <a href="{% url 'entry' fav.id %}">{{ read_more }}</a>
+        </small>
+        <p>
+           <a href="{% url 'remove_from_fav' fav.id %}"> Удалить из избранного</a>
+        </p>
+      </div>
+      </div>
+
+
+    {% empty %}
+      <li>У вас ещё нет избранных статей.</li>
+    {% endfor %}
+  </ul>
+
+
+{% endblock content %}

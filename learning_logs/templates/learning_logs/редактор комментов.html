@@ -1,0 +1,32 @@
+url(r'edit_comment/(?P<all_comments_id>\d+)/$', views.edit_comment, name='edit_comment'),
+
+
+
+
+html
+
+<p>
+    <a href="{% url 'edit_comment' all_comments.id %}">Редактировать комментарий</a>
+</p>
+
+{% if comment.created != comment.updated %}
+Комментарий обновлён {{comment.updated | date:'M d, Y H:i'}}
+{% endif %}
+
+'''def edit_comment(request, all_comments_id):
+    comment = Comment.objects.filter(id = all_comments_id)
+    #all_comments = Comment.objects.filter(post=entry)
+    #for comment in all_comments:
+    if comment.name != request.user:
+        raise Http404
+    else:
+        if request.method != 'POST':
+            form = CommentForm(instance=comment)
+        else:
+            form = CommentForm(instance=comment, data=request.POST)
+            if form.is_valid():
+                comment.save()
+                return HttpResponseRedirect(reverse('entry', args=[entry_id]))
+    context = {'comment': comment, 'form': form}
+    return render(request, 'learning_logs/edit_comment.html', context)
+'''

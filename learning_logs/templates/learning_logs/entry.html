@@ -14,29 +14,44 @@
   </div>
   <div class="panel-body">
     {{ entry.text|linebreaks }}
+  </div>
+    <div class="panel-body">
     <small>
-      <a href="{% url 'edit_entry' entry.id %}">Edit entry</a>
+      <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
     </small>
-
+<p>
+  <small>
+    <a href="{% url 'add_to_fav' entry.id %}">Добавить статью в избранное</a>
+  </small>
+</p>
+<p>
+    <small>
+  <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
+  </small>
+</p>
+</div>
+    <div class="panel-body">
     <p>Оставить комментарий:</p>
     <form method="post" action="{% url 'entry' entry.id %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
-    </div>
+
     {% buttons %}
       <button name="submit" class="btn btn-primary">Добавить комментарий</button>
     {% endbuttons %}
     <input type="hidden" name="next" value="{% url 'entry' entry.id %}" />
+</div>
 
-
-<p></p>
+    <div class="panel-body">
 <p> Комментарии к статье: </p>
 {% for comment in all_comments %}
 <div class="panel panel-default">
 <div class="panel-heading">
 <h5>
 Комментарий от пользователя {{ comment.name }}
-<p><small>{{comment.created | date:'M d, Y H:i'}}</small></p>
+<p><small>Комментарий создан {{comment.created | date:'M d, Y H:i'}}<br>
+</small></p>
+
 </h5>
 </div>
 <div class="panel-body">
@@ -46,11 +61,16 @@
   </div>
 
 </div>
+{% empty %}
+К этой статье пока не было оставлено никаких комментариев...Станьте первым!
 {% endfor %}
+</div>
+<div class="panel-body">
 <p>
 <a href="{% url 'entry' entry.id %}">Вернуться к началу статьи "{{ entry }}"</a>
 </p>
 <p>
   <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы {{ topic }}</a>
 </p>
+</div>
   {% endblock content %}

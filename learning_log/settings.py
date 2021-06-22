@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'learning_logs',
     'users',
     'bootstrap3',
+    'polls',
 ]
 
 MIDDLEWARE = [
