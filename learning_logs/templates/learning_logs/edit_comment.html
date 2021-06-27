@@ -5,13 +5,13 @@
 {% endblock header %}
 
 {% block content %}
-  <form method="post" action="{% url 'edit_comment' comment.id %}" class="form">
-  {% csrf_token %}
-  {% bootstrap_form form %}
+  <form method="post" action="{% url 'edit_comment' entry.id comment.id %}" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
 
-  {% buttons %}
+    {% buttons %}
     <button name="submit" class="btn btn-primary">Редактировать комментарий</button>
-  {% endbuttons %}
-  <input type="hidden" name="next" value="{% url 'edit_comment' comment.id %}" />
+    {% endbuttons %}
+    <input type="hidden" name="next" value="{% url 'entry' entry.id  %}" />
   </form>
 {% endblock content %}

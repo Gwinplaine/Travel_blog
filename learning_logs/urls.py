@@ -28,5 +28,6 @@ urlpatterns = [
        url(r'^entry/(?P<entry_id>\d+)/add_to_fav/$', views.add_to_fav, name='add_to_fav'),
        url(r'^entry/(?P<entry_id>\d+)/remove_from_fav/$', views.remove_from_fav, name='remove_from_fav'),
        url(r'^favourites/$', views.favourites, name='favourites'),
+       url(r'edit_comment/(?P<entry_id>\d+)/(?P<comment_id>\d+)/$', views.edit_comment, name='edit_comment'),
 
 ]

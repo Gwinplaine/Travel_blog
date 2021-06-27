@@ -2,56 +2,50 @@
 {% block header %}
   <div class='jumbotron' >
     <h3 class="display-4">Путь к здоровому телу не так далёк, как кажется!
-У нас Вы <a href="{% url 'topics' %}">найдёте</a> всю информацию о правильном питании, об упражнениях и обо
-всём, что поможет Вам прийти к своей цели!
+    У нас Вы <a href="{% url 'topics' %}">найдёте</a> всю информацию о правильном питании, об упражнениях и обо
+    всём, что поможет Вам прийти к своей цели!
     </h3>
   </div>
 {% endblock header %}
 
 {% block content %}
+{% load static %}
+<img src="{% static 'bz.png'%}" alt="My image" width="150">
   {% if user.is_authenticated %}
-   <h3>Привет, {{ user.username }}, мы ради видеть тебя у нас снова!<br>
-     <p></p>
-     <p></p>
-   Что у нас новенького и интересного?   </h3><br>
+  <h3>Привет, {{ user.username }}, мы ради видеть тебя у нас снова!<br>
+    <p></p>
+    <p></p>
+    Что у нас новенького?<br>
+  </h3>
 
+  <div class="panel panel-default">
+    <div class="panel-heading" ">
+      5 последних статей:
+    </div>
 
-   <div class="panel panel-default">
-   <div class="panel-heading" ">
-     5 последних статей:
-   </div>
-
-
-   {%for entry in top%}
-
-   <div class="panel panel-default">
-
-   <div class="panel-body">
-     Статья из раздела
-    <a href="{% url 'topic' id %}"> {{entry.topic}}</a> -
-      <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>:
-<p>
-     {{ entry.text }}
-
-     <small>
-     <a href="{% url 'entry' entry.id %}">{{ read_more }}</a> -
-       {{ entry.date_added|date:'M d, Y H:i' }}
-     </small>
-     </p>
-   <p>
-   </p>
-   </div>
-   </div> <!-- panel -->
-   {% endfor %}
+    {%for entry in top%}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        Статья из раздела
+        <a href="{% url 'topic' id %}"> {{entry.topic}}</a> -
+        <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>:
+        <p>
+          {{ entry.text }}
+          <small>
+            <a href="{% url 'entry' entry.id %}">{{ read_more }}</a> -
+            {{ entry.date_added|date:'M d, Y H:i' }}
+          </small>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+    {% endfor %}
   {% else %}
-  <h3>
+    <h3>
     <a href="{% url 'users:register' %}">Зарегистрируйтесь</a> или
     <a href="{% url 'users:login' %}">войдите</a> в свой аккаунт и
     начинайте свой путь к здоровому телу прямо сейчас!
   </h3>
-  <h4>
-
-
-  </h4>
   {% endif %}
 {% endblock content %}

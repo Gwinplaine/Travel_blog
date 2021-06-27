@@ -23,7 +23,6 @@ def index(request):
 @login_required
 def topics(request):
     'выводит список тем'
-    #    topics = Topic.objects.order_by('date_added')
     #topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     topics = Topic.objects.order_by('date_added')
     context = {'topics':topics}
@@ -140,6 +139,24 @@ def favourites(request):
             fav.text = fav.text[:50]
     context = {'favourites': favourites,  'read_more':read_more}
     return render(request, 'learning_logs/favourites.html', context)
+
+def edit_comment(request, entry_id, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    entry = comment.post
+    #all_comments = Comment.objects.filter(post=entry)
+    #for comment in all_comments:
+    if comment.name != request.user:
+        raise Http404
+    else:
+        if request.method != 'POST':
+            form = CommentForm(instance=comment)
+        else:
+            form = CommentForm(instance=comment, data=request.POST)
+            if form.is_valid():
+                comment.save()
+                return HttpResponseRedirect(reverse('entry', args=[entry_id]))
+    context = {'comment': comment, 'entry':entry, 'form': form}
+    return render(request, 'learning_logs/edit_comment.html', context)
 
 
 

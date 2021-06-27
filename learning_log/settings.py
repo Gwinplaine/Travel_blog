@@ -32,7 +32,12 @@ LOGIN_URL = '/users/login/'
 BOOTSTRAP3 = {
     'include_jquery' : True
 }
+STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+
+]
 # Application definition
 
 INSTALLED_APPS = [

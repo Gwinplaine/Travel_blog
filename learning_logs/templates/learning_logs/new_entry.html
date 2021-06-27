@@ -6,12 +6,12 @@
 
 {% block content %}
   <form method="post" action="{% url 'new_entry' topic.id %}" class="form">
-  {% csrf_token %}
-  {% bootstrap_form form %}
+    {% csrf_token %}
+    {% bootstrap_form form %}
 
-  {% buttons %}
-    <button name="submit" class="btn btn-primary">Добавить статью</button>
-  {% endbuttons %}
-  <input type="hidden" name="next" value="{% url 'topic' topic.id %}" />
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Добавить статью</button>
+    {% endbuttons %}
+    <input type="hidden" name="next" value="{% url 'topic' topic.id %}" />
   </form>
 {% endblock content %}

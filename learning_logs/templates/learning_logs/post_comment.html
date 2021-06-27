@@ -4,10 +4,10 @@
 {% endblock header %}
 
 {% block content %}
-<form method="post" action="{% url 'entry' entry.id %}">
-{% csrf_token %}
-{{ form.as_p }}
-<button name="submit">register</button>
-<input type="hidden" name="next" value="{% url 'entry' entry.id %}" />
-</form>
+  <form method="post" action="{% url 'entry' entry.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">register</button>
+    <input type="hidden" name="next" value="{% url 'entry' entry.id %}" />
+  </form>
 {% endblock content %}
