@@ -20,5 +20,7 @@ from django.conf.urls import include, url
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'', include('learning_logs.urls')),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^users/', include('users.urls', namespace='users')),
+    url(r'^notes/', include('notes.urls', namespace='notes')),
 ]

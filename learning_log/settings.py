@@ -35,7 +35,7 @@ BOOTSTRAP3 = {
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR.joinpath("static/"),
 
 ]
 # Application definition
@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'learning_logs',
     'users',
     'bootstrap3',
-    'polls',
+    'blog',
+    'notes',
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 

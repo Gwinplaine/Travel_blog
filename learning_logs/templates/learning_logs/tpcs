@@ -17,7 +17,7 @@
     <li>Упс, пока ещё нету ни одного раздела.</li>
     {% endfor %}
   </ul>
-  <div class="panel-body" >
+  <div class="panel-body" style="width:150px;">
     <a href="{% url 'new_topic' %}"> Добавить раздел</a>
   </div>
 {% endblock content %}

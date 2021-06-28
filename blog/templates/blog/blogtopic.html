@@ -1,31 +1,31 @@
 {% extends 'learning_logs/base.html' %}
 {% block header %}
-  <h2>{{ topic }}</h2>
+  <h2>{{ blogtopic }}</h2>
 {% endblock header %}
 
 {% block content %}
   <p>
-    <a href="{% url 'new_entry' topic.id %}">Добавить новую статью</a>
+    <a href="{% url 'blog:new_blogentry' blogtopic.id %}">Добавить новую статью</a>
   </p>
-  {% for entry in entries %}
+  {% for blogentry in blogentries %}
     <div class="panel panel-default">
       <div class="panel-heading">
         <h5>
-          <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>
+          <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>
         </h5>
       </div>
       <div class="panel-body">
-        {{ entry.text }}
+        {{ blogentry.blogtext }}
         <small>
-          <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
+          <a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a>
         </small>
         <p>
           <small>
-            {{ entry.date_added|date:'d.m.Y в H:i' }}
+            {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
           </small>
         </p>
         <small>
-          <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
+          <a href="{% url 'blog:edit_blogentry' blogentry.id %}">Редактировать статью</a>
         </small>
       </div>
     </div>

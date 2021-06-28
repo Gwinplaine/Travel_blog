@@ -1,7 +1,7 @@
 {% extends "learning_logs/base.html" %}
 {% block header %}
-  <div class='jumbotron' >
-    <h3 class="display-4">Путь к здоровому телу не так далёк, как кажется!
+  <div class='jumbotron'>
+    <h3 class="display-8" ">Путь к здоровому телу не так далёк, как кажется!
     У нас Вы <a href="{% url 'topics' %}">найдёте</a> всю информацию о правильном питании, об упражнениях и обо
     всём, что поможет Вам прийти к своей цели!
     </h3>
@@ -10,7 +10,7 @@
 
 {% block content %}
 {% load static %}
-<img src="{% static 'bz.png'%}" alt="My image" width="150">
+
   {% if user.is_authenticated %}
   <h3>Привет, {{ user.username }}, мы ради видеть тебя у нас снова!<br>
     <p></p>
@@ -27,13 +27,13 @@
     <div class="panel panel-default">
       <div class="panel-body">
         Статья из раздела
-        <a href="{% url 'topic' id %}"> {{entry.topic}}</a> -
+        <a href="{% url 'topic' entry.topic.id %}"> {{entry.topic}}</a> -
         <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>:
         <p>
           {{ entry.text }}
           <small>
             <a href="{% url 'entry' entry.id %}">{{ read_more }}</a> -
-            {{ entry.date_added|date:'M d, Y H:i' }}
+            {{ entry.date_added|date:'d.m.Y в H:i' }}
           </small>
         </p>
         <p>

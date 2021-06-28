@@ -1,0 +1,23 @@
+{% extends "learning_logs/base.html" %}
+{%load static%}
+{% block header %}
+  <h2>Разделы статей</h2>
+{% endblock header %}
+
+{% block content %}
+  <ul>
+    {% for blogtopic in blogtopics %}
+    <div class="panel panel-default" style="width:452px; background-color: #c3f6c3">
+      <div class="panel-heading" style="width:450px; background-color: #c3f6c3">
+        <h4>
+          <img src="{% static 'sn/ok.png'  %}" width='80px'>
+          <a href="{% url 'blog:blogtopic' blogtopic.id %}">{{ blogtopic }}</a>
+        </h4>
+      </div>
+    </div>
+    {% empty %}
+    <li>Упс, пока ещё нету ни одного раздела.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}

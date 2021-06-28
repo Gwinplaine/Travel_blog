@@ -128,7 +128,7 @@ def remove_from_fav(request, entry_id):
         entry.like.remove(request.user)
         end = ''
     else:
-        end = 'Данная статья уже добавлена в избранное'
+        end = 'Данная статья уже удалена из избранного'
     return HttpResponseRedirect(reverse('favourites'))
 
 def favourites(request):

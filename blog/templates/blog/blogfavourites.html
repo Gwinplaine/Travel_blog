@@ -5,23 +5,23 @@
 
 {% block content %}
   <ul>
-    {% for fav in favourites %}
+    {% for fav in blogfavourites %}
     <div class="panel panel-default" style="background-color: #c3f6c3">
       <div class="panel-heading" style="background-color: #c3f6c3">
         <h5>
-          <a href="{% url 'entry' fav.id %}"> {{fav.title}}</a>
+          <a href="{% url 'blog:blogentry' fav.id %}"> {{fav.blogtitle}}</a>
           <small>
-            {{ fav.date_added|date:'d.m.Y в H:i' }}
+            {{ fav.blogdate_added|date:'d.m.Y в H:i' }}
           </small>
         </h5>
       </div>
       <div class="panel-body">
-        {{ fav.text }}
+        {{ fav.blogtext }}
         <small>
-          <a href="{% url 'entry' fav.id %}">{{ read_more }}</a>
+          <a href="{% url 'blog:blogentry' fav.id %}">{{ read_more }}</a>
         </small>
         <p>
-          <a href="{% url 'remove_from_fav' fav.id %}"> Удалить из избранного</a>
+          <a href="{% url 'blog:remove_from_fav' fav.id %}"> Удалить из избранного</a>
         </p>
       </div>
     </div>
