@@ -18,11 +18,16 @@
   </div>
   <div class="panel-body">
     <small>
-      <a href="{% url 'blog:edit_blogentry' blogentry.id %}">Редактировать статью</a> |
-    </small>
-    <small>
       <a href="{% url 'blog:add_to_fav' blogentry.id %}">Добавить статью в избранное</a>
     </small>
+    {% if user == blogentry.blogentryowner %}
+    <small>
+      | <a href="{% url 'blog:edit_blogentry' blogentry.id %}">Редактировать статью</a>
+    </small>
+    <small>
+      | <a href="{% url 'blog:delete_blogentry' blogtopic.id blogentry.id %}">Удалить статью</a>
+    </small>
+    {%endif%}
     <br>
 
     <small>Поделиться этой статьёй в соцсетях:</small>

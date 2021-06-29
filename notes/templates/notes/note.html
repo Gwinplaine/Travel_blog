@@ -20,19 +20,16 @@
     <small>
       <a href="{% url 'notes:edit_note' note.id %}">Редактировать заметку</a>
     </small>
-    <p>
-      <small>
-        <a href="{% url 'notes:notes' %}">Вернуться ко всем моим заметкам</a>
-      </small>
-    </p>
+    <small>
+      | <a href="{% url 'notes:delete_note' note.id %}">Удалить заметку</a>
+    </small>
   </div>
   <div class="panel-body">
     <p>
       <small>
         <a href="{% url 'notes:note' note.id %}">Вернуться к началу заметки</a>
       </small>
-    </p>
-    <p>
+      <br>
       <small>
         <a href="{% url 'notes:notes' %}">Вернуться ко всем моим заметкам</a>
       </small>

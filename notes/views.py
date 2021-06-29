@@ -10,12 +10,11 @@ from .forms import NotesentryForm
 
 @login_required
 def notes(request):
-    'выводит список тем'
-    notes = Notesentry.objects.filter(notesowner=request.user).order_by('notesdate_added')
+    notes = Notesentry.objects.filter(notesowner=request.user).order_by('-notesdate_added')
     read_more = '...продолжить читать заметку'
     for note in notes:
         if note.notesowner != request.user:
-            raise Http404
+            return render(request, 'learning_logs/notyours.html')
         if len(note.notestext) > 50:
             note.notestext = note.notestext[:50]
 
@@ -26,7 +25,7 @@ def notes(request):
 def note(request, note_id):
     note = Notesentry.objects.get(id=note_id)
     if note.notesowner != request.user:
-        raise Http404
+        return render(request, 'learning_logs/notyours.html')
     context = {'note': note}
     return render(request, 'notes/note.html', context)
 
@@ -54,7 +53,7 @@ def new_note(request):
 def edit_note(request, note_id):
     note = Notesentry.objects.get(id=note_id)
     if note.notesowner != request.user:
-        raise Http404
+        return render(request, 'learning_logs/notyours.html')
     if request.method != 'POST':
         form = NotesentryForm(instance=note)
     else:
@@ -64,6 +63,16 @@ def edit_note(request, note_id):
             return HttpResponseRedirect(reverse('notes:note', args=[note.id]))
     context = {'note': note, 'form': form}
     return render(request, 'notes/edit_note.html', context)
+
+@login_required
+def delete_note(request, note_id):
+    note = Notesentry.objects.get(id=note_id)
+    if note.notesowner != request.user:
+        return render(request, 'learning_logs/notyours.html')
+    else:
+        note = Notesentry.objects.filter(id=note_id)
+        note.delete()
+    return HttpResponseRedirect(reverse('notes:notes'))
 
 
 

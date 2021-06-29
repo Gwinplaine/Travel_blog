@@ -12,7 +12,6 @@ from .forms import BlogtopicForm, BlogentryForm, BlogcommentForm
 
 @login_required
 def blogtopics(request):
-    'выводит список тем'
     blogtopics = Blogtopic.objects.order_by('blogdate_added')
     context = {'blogtopics': blogtopics}
     return render(request, 'blog/blogtopics.html', context)
@@ -21,8 +20,6 @@ def blogtopics(request):
 def blogtopic(request, blogtopic_id):
     blogtopic = Blogtopic.objects.get(id=blogtopic_id)
     read_more = '...продолжить читать статью'
-   # if topic.owner != request.user:
-    #    raise Http404
     blogentries = blogtopic.blogentry_set.order_by('-blogdate_added')
     for blogentry in blogentries:
         if len(blogentry.blogtext) > 50:
@@ -34,7 +31,6 @@ def blogtopic(request, blogtopic_id):
 @login_required
 def new_blogentry(request, blogtopic_id):
     blogtopic = Blogtopic.objects.get(id=blogtopic_id)
-
     if request.method != 'POST':
         form = BlogentryForm()
     else:
@@ -42,6 +38,7 @@ def new_blogentry(request, blogtopic_id):
         if form.is_valid():
             new_blogentry = form.save(commit=False)
             new_blogentry.blogtopic = blogtopic
+            new_blogentry.blogentryowner = request.user
             new_blogentry.save()
             return  HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic_id]))
     context = {'blogtopic': blogtopic, 'form': form}
@@ -49,21 +46,22 @@ def new_blogentry(request, blogtopic_id):
 
 @login_required
 def edit_blogentry(request, blogentry_id):
+
     blogentry = Blogentry.objects.get(id=blogentry_id)
     blogtopic = blogentry.blogtopic
-    if blogtopic.blogowner != request.user:
-        raise Http404
-
+    if blogentry.blogentryowner != request.user:
+        return render(request, 'learning_logs/notyours.html')
     if request.method != 'POST':
         form = BlogentryForm(instance=blogentry)
     else:
         form = BlogentryForm(instance=blogentry, data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic.id]))
+            return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry.id]))
     context = {'blogentry': blogentry, 'blogtopic':blogtopic, 'form': form}
     return render(request, 'blog/edit_blogentry.html', context)
 
+@login_required
 def blogentry(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
     blogtopic = blogentry.blogtopic
@@ -82,6 +80,16 @@ def blogentry(request, blogentry_id):
     context = {'blogentry': blogentry, 'blogtopic':blogtopic, 'form':form, 'all_comments':all_comments}
     return render(request, 'blog/blogentry.html', context)
 
+def delete_blogentry(request, blogtopic_id, blogentry_id):
+    blogentry = Blogentry.objects.get(id=blogentry_id)
+    if blogentry.blogentryowner != request.user:
+        return render(request, 'learning_logs/notyours.html')
+    else:
+        blogentry = Blogentry.objects.filter(id=blogentry_id)
+        blogentry.delete()
+    return HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic_id]))
+
+@login_required
 def add_to_fav(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
     if request.user not in blogentry.bloglike.all():
@@ -91,6 +99,7 @@ def add_to_fav(request, blogentry_id):
         end = 'Данная статья уже добавлена в избранное'
     return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))
 
+@login_required
 def remove_from_fav(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
     if request.user in blogentry.bloglike.all():
@@ -100,6 +109,7 @@ def remove_from_fav(request, blogentry_id):
         end = 'Данная статья уже удалена из избранного'
     return HttpResponseRedirect(reverse('blog:blogfavourites'))
 
+@login_required
 def blogfavourites(request):
     blogfavourites = Blogentry.objects.filter(bloglike=request.user)
     read_more = '...продолжить читать статью'
@@ -109,9 +119,11 @@ def blogfavourites(request):
     context = {'blogfavourites': blogfavourites,  'read_more':read_more}
     return render(request, 'blog/blogfavourites.html', context)
 
+@login_required
 def edit_blogcomment(request, blogentry_id, blogcomment_id):
     blogcomment = Blogcomment.objects.get(id=blogcomment_id)
     blogentry = blogcomment.blogpost
+
     #all_comments = Comment.objects.filter(post=entry)
     #for comment in all_comments:
     if blogcomment.blogname != request.user:

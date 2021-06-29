@@ -18,11 +18,16 @@
   </div>
   <div class="panel-body">
     <small>
-      <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a> |
-    </small>
-    <small>
       <a href="{% url 'add_to_fav' entry.id %}">Добавить статью в избранное</a>
     </small>
+    {%if user.username == 'denis'%}
+    <small>
+      | <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
+    </small>
+    <small>
+      | <a href="{% url 'delete_entry' topic.id entry.id %}"> Удалить статью</a>
+    </small>
+    {%endif%}
     <br>
 
     <small>Поделиться этой статьёй в соцсетях:</small>
@@ -49,6 +54,7 @@
       </small>
     </p>
   </div>
+  {% if user.is_authenticated %}
   <div class="panel-body">
     <p>Оставить комментарий:</p>
     <form method="post"  action="{% url 'entry' entry.id %}" class="form" >
@@ -61,6 +67,7 @@
       <input type="hidden" name="next" value="{% url 'entry' entry.id %}" />
     </form>
   </div>
+  {%endif%}
 </div>
 
 <div class="panel-body">
@@ -95,12 +102,13 @@
   К этой статье пока не было оставлено никаких комментариев...Станьте первым!
   {% endfor %}
 </div>
+
 <div class="panel-body">
   <p>
-    <a href="{% url 'entry' entry.id %}">Вернуться к началу статьи "{{ entry }}"</a>
+    <a href="{% url 'entry' entry.id %}">Вернуться к началу статьи "{{ entry.title }}"</a>
   </p>
   <p>
-    <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы {{ topic }}</a>
+    <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
   </p>
 </div>
 {% endblock content %}

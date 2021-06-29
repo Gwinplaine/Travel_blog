@@ -20,21 +20,17 @@ def index(request):
     context = {'top': top, 'read_more': read_more,'topic':topic, 'id':id}
     return render(request, 'learning_logs/index.html', context)
 
-@login_required
+
 def topics(request):
     'выводит список тем'
-    #topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     topics = Topic.objects.order_by('date_added')
     context = {'topics':topics}
     return render(request, 'learning_logs/topics.html', context)
 
-@login_required
+
 def topic(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
-
     read_more = '...продолжить читать статью'
-   # if topic.owner != request.user:
-    #    raise Http404
     entries = topic.entry_set.order_by('-date_added')
     for entry in entries:
         if len(entry.text) > 50:
@@ -44,6 +40,8 @@ def topic(request, topic_id):
 
 @login_required
 def new_topic(request):
+    if request.user.username != 'denis':
+        return render(request, 'learning_logs/foradmin.html')
     '''определяет новую тему'''
     if request.method != 'POST':
         #данные не отправлялись, создаётся пустая форма.
@@ -62,8 +60,9 @@ def new_topic(request):
 
 @login_required
 def new_entry(request, topic_id):
+    if request.user.username != 'denis':
+        return render(request, 'learning_logs/foradmin.html')
     topic = Topic.objects.get(id=topic_id)
-
     if request.method != 'POST':
         form = EntryForm()
     else:
@@ -71,8 +70,6 @@ def new_entry(request, topic_id):
         if form.is_valid():
             new_entry = form.save(commit=False)
             new_entry.topic = topic
-            #if topic.owner != request.user:
-            #    raise Http404
             new_entry.save()
             return  HttpResponseRedirect(reverse('topic', args=[topic_id]))
     context = {'topic': topic, 'form': form}
@@ -80,24 +77,24 @@ def new_entry(request, topic_id):
 
 @login_required
 def edit_entry(request, entry_id):
+    if request.user.username != 'denis':
+        return render(request, 'learning_logs/foradmin.html')
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
-    #if topic.owner != request.user:
-    #    raise Http404
-
     if request.method != 'POST':
         form = EntryForm(instance=entry)
     else:
         form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('topic', args=[topic.id]))
+            return HttpResponseRedirect(reverse('entry', args=[entry.id]))
     context = {'entry': entry, 'topic':topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
 
 def entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
+
     all_comments = Comment.objects.filter(active=True, post=entry).order_by('created')
     if request.method != 'POST':
         form = CommentForm()
@@ -110,9 +107,15 @@ def entry(request, entry_id):
             comment.save()
             return  HttpResponseRedirect(reverse('entry', args=[entry_id]))
 
-    context = {'entry': entry, 'topic':topic, 'form':form, 'all_comments':all_comments}
+    context = {'entry': entry, 'topic':topic, 'form':form, 'all_comments':all_comments, 'delete_entry':delete_entry}
     return render(request, 'learning_logs/entry.html', context)
 
+@login_required
+def delete_entry(request, topic_id, entry_id):
+    entry = Entry.objects.filter(id=entry_id).delete()
+    return HttpResponseRedirect(reverse('topic', args=[topic_id]))
+
+@login_required
 def add_to_fav(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     if request.user not in entry.like.all():
@@ -122,6 +125,7 @@ def add_to_fav(request, entry_id):
         end = 'Данная статья уже добавлена в избранное'
     return HttpResponseRedirect(reverse('entry', args=[entry_id]))
 
+@login_required
 def remove_from_fav(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     if request.user in entry.like.all():
@@ -131,6 +135,7 @@ def remove_from_fav(request, entry_id):
         end = 'Данная статья уже удалена из избранного'
     return HttpResponseRedirect(reverse('favourites'))
 
+@login_required
 def favourites(request):
     favourites = Entry.objects.filter(like=request.user)
     read_more = '...продолжить читать статью'
@@ -140,6 +145,7 @@ def favourites(request):
     context = {'favourites': favourites,  'read_more':read_more}
     return render(request, 'learning_logs/favourites.html', context)
 
+@login_required
 def edit_comment(request, entry_id, comment_id):
     comment = Comment.objects.get(id=comment_id)
     entry = comment.post

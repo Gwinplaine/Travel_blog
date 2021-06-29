@@ -21,11 +21,14 @@
         </small>
         <p>
           <small>
-            {{ note.notesdate_added|date:'d.m.Y в H:i' }}
+            Опубликовано {{ note.notesdate_added|date:'d.m.Y в H:i' }}
           </small>
         </p>
         <small>
           <a href="{% url 'notes:edit_note' note.id %}">Редактировать заметку</a>
+        </small>
+        <small>
+          | <a href="{% url 'notes:delete_note' note.id %}">Удалить заметку</a>
         </small>
       </div>
     </div>

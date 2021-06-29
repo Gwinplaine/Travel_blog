@@ -20,13 +20,18 @@
           <a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a>
         </small>
         <p>
-          <small>
-            {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
-          </small>
+          <h5><small>
+            Добавлено пользователем {{blogentry.blogentryowner}} в {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
+          </small></h5>
         </p>
+        {% if user == blogentry.blogentryowner %}
         <small>
           <a href="{% url 'blog:edit_blogentry' blogentry.id %}">Редактировать статью</a>
         </small>
+        <small>
+          | <a href="{% url 'blog:delete_blogentry' blogtopic.id blogentry.id %}">Удалить статью</a>
+        </small>
+        {%endif%}
       </div>
     </div>
   {% empty %}

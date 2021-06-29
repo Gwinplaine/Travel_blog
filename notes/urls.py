@@ -23,6 +23,7 @@ urlpatterns = [
        url(r'^(?P<note_id>\d+)/$', views.note, name='note'),
        url(r'^new_note/$', views.new_note, name='new_note'),
        url(r'^edit_note/(?P<note_id>\d+)/$', views.edit_note, name='edit_note'),
+       url(r'^delete_note/(?P<note_id>\d+)/$', views.delete_note, name='delete_note'),
 
 
 

@@ -5,13 +5,14 @@ class Blogtopic(models.Model):
     '''Тема, которую изучает пользователь'''
     blogtext = models.CharField(max_length=200)
     blogdate_added = models.DateTimeField(auto_now_add=True)
-    blogowner=models.ForeignKey(User, on_delete=models.CASCADE)
+    #blogowner=models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.blogtext
 
 class Blogentry(models.Model):
     '''информация, изученная по теме'''
     blogtopic = models.ForeignKey(Blogtopic, on_delete=models.CASCADE)
+    blogentryowner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blogentryowner')
     blogtitle = models.CharField(max_length=50)
     blogtext = models.TextField()
     blogdate_added = models.DateTimeField(auto_now_add=True)

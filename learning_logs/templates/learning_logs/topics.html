@@ -17,7 +17,12 @@
     <li>Упс, пока ещё нету ни одного раздела.</li>
     {% endfor %}
   </ul>
+
+  {%if user.username == 'denis'%}
   <div class="panel-body" >
     <a href="{% url 'new_topic' %}"> Добавить раздел</a>
   </div>
+  {%endif%}
+
+
 {% endblock content %}

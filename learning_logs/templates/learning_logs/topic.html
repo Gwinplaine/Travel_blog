@@ -4,9 +4,14 @@
 {% endblock header %}
 
 {% block content %}
+
+{%if user.username == 'denis'%}
+<div class="panel-body" >
   <p>
     <a href="{% url 'new_entry' topic.id %}">Добавить новую статью</a>
   </p>
+</div>
+{%endif%}
   {% for entry in entries %}
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -21,12 +26,17 @@
         </small>
         <p>
           <small>
-            {{ entry.date_added|date:'d.m.Y в H:i' }}
+            Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
           </small>
         </p>
-        <small>
-          <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
-        </small>
+        {%if user.username == 'denis'%}
+          <small>
+            <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
+          </small>
+          <small>
+            |<a href="{% url 'delete_entry' topic.id entry.id %}">Удалить статью</a>
+          </small>
+        {%endif%}
       </div>
     </div>
   {% empty %}
