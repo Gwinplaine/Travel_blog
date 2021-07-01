@@ -1,0 +1,30 @@
+{% extends "learning_logs/base.html" %}
+{% block header %}
+  <div class='jumbotron' "row"=2>
+    <div class="container"><h3>Все статьи пользователя {{blogentry.blogentryowner}}</h3>
+    </div>
+  </div>
+{% endblock header %}
+
+{% block content %}
+{% load static %}
+
+  {%for blogentry in alluserentries%}
+  <div class="panel panel-default">
+    <div class="panel-heading" ">
+      <small>Опубликовано {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
+      </small>
+        <br>
+      Статья из раздела
+      <a href="{% url 'blog:blogtopic' blogentry.blogtopic.id %}"> {{blogentry.blogtopic}}</a> -
+      <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>:
+    </div>
+      <div class="panel-body">
+        {{ blogentry.blogtext }}
+        <small>
+          <a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a>
+        </small>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock content %}

@@ -46,7 +46,6 @@ def new_blogentry(request, blogtopic_id):
 
 @login_required
 def edit_blogentry(request, blogentry_id):
-
     blogentry = Blogentry.objects.get(id=blogentry_id)
     blogtopic = blogentry.blogtopic
     if blogentry.blogentryowner != request.user:
@@ -138,6 +137,17 @@ def edit_blogcomment(request, blogentry_id, blogcomment_id):
                 return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))
     context = {'blogcomment': blogcomment, 'blogentry':blogentry, 'form': form}
     return render(request, 'blog/edit_blogcomment.html', context)
+
+@login_required
+def alluserentries(request, user_id):
+    alluserentries = Blogentry.objects.filter(blogentryowner=user_id).order_by('-blogdate_added')
+    #user=alluserentries.objects.get()
+    read_more = '...продолжить читать статью'
+    for blogentry in alluserentries:
+        if len(blogentry.blogtext) > 110:
+            blogentry.blogtext = blogentry.blogtext[:110]
+    context = {'alluserentries': alluserentries, 'read_more': read_more, 'blogentry':blogentry}
+    return render(request, 'blog/alluserentries.html', context)
 
 
 

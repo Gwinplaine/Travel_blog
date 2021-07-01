@@ -21,7 +21,9 @@
         </small>
         <p>
           <h5><small>
-            Добавлено пользователем {{blogentry.blogentryowner}} в {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
+            Добавлено пользователем
+            <a href="{% url 'blog:alluserentries' blogentry.blogentryowner.id %}">{{blogentry.blogentryowner}} </a>
+            в {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
           </small></h5>
         </p>
         {% if user == blogentry.blogentryowner %}

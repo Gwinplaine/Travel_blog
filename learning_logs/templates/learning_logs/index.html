@@ -1,40 +1,34 @@
 {% extends "learning_logs/base.html" %}
 {% block header %}
-  <div class='jumbotron'>
-    <h3 class="display-8" ">Путь к здоровому телу не так далёк, как кажется!
-    У нас Вы <a href="{% url 'topics' %}">найдёте</a> всю информацию о правильном питании, об упражнениях и обо
-    всём, что поможет Вам прийти к своей цели!
-    </h3>
-  </div>
+<h3>Привет, {{ user.username }}, мы рады видеть тебя у нас!<br>
+  <p></p>
+  <p></p>
+  Что у нас новенького?<br>
+</h3>
 {% endblock header %}
 
 {% block content %}
 {% load static %}
 
   {% if user.is_authenticated %}
-  <h3>Привет, {{ user.username }}, мы рады видеть тебя у нас!<br>
-    <p></p>
-    <p></p>
-    Что у нас новенького?<br>
-  </h3>
-  <div class="panel panel-default">
-    <div class="panel-heading" ">
-      5 последних статей:
-    </div>
 
+      <h4>5 последних статей:</h4>
     {%for entry in top%}
     <div class="panel panel-default">
-      <div class="panel-body">
+      <div class="panel-heading" ">
+        <small>Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
+        </small>
+        <br>
         Статья из раздела
-        <a href="{% url 'topic' entry.topic.id %}"> {{entry.topic}}</a> -
+        <a href="{% url 'topic' entry.topic.id %}"> "{{entry.topic}}"</a> -
         <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>:
-        <p>
+      </div>
+      <div class="panel-body">
           {{ entry.text }}
           <small>
-            <a href="{% url 'entry' entry.id %}">{{ read_more }}</a> -
-            {{ entry.date_added|date:'d.m.Y в H:i' }}
+            <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
           </small>
-        </p>
+      </dev>
         <p>
         </p>
       </div>
