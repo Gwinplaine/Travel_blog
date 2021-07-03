@@ -5,7 +5,7 @@
 {% endblock header %}
 
 {% block content %}
-  <form method="post" action="{% url 'blog:edit_blogentry' blogentry.id %}" class="form">
+  <form method="post" action="{% url 'blog:edit_blogentry' blogentry.id %}" class="form" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
 

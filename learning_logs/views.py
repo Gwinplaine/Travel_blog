@@ -17,15 +17,16 @@ def index(request):
         id = topic.id
         if len(entry.text) > 110:
             entry.text = entry.text[:110]
-    context = {'top': top, 'read_more': read_more,'topic':topic, 'id':id}
+    context = {'top': top, 'read_more': read_more, 'topic': topic, 'id': id}
     return render(request, 'learning_logs/index.html', context)
 
 
 def topics(request):
     'выводит список тем'
     topics = Topic.objects.order_by('date_added')
-    context = {'topics':topics}
+    context = {'topics': topics}
     return render(request, 'learning_logs/topics.html', context)
+
 
 def topic(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
@@ -34,8 +35,9 @@ def topic(request, topic_id):
     for entry in entries:
         if len(entry.text) > 50:
             entry.text = entry.text[:50]
-    context = {'topic': topic, 'entries':entries, 'read_more':read_more}
+    context = {'topic': topic, 'entries': entries, 'read_more': read_more}
     return render(request, 'learning_logs/topic.html', context)
+
 
 @login_required
 def new_topic(request):
@@ -43,10 +45,10 @@ def new_topic(request):
         return render(request, 'learning_logs/foradmin.html')
     '''определяет новую тему'''
     if request.method != 'POST':
-        #данные не отправлялись, создаётся пустая форма.
+        # данные не отправлялись, создаётся пустая форма.
         form = TopicForm()
     else:
-        #отправлены данные POST; обработать данные
+        # отправлены данные POST; обработать данные
         form = TopicForm(request.POST, request.FILES)
         if form.is_valid():
             new_topic = form.save(commit=False)
@@ -55,7 +57,7 @@ def new_topic(request):
             new_topic.save()
             return HttpResponseRedirect(reverse('topics'))
 
-    context = { 'form': form}
+    context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
 
 
@@ -66,14 +68,15 @@ def new_entry(request, topic_id):
     if request.method != 'POST':
         form = EntryForm()
     else:
-        form = EntryForm(data=request.POST)
+        form = EntryForm(request.POST, request.FILES)
         if form.is_valid():
-            new_entry = form.save(commit=False)
+            new_entry = form.save(commit=False) #data
             new_entry.topic = topic
             new_entry.save()
-            return  HttpResponseRedirect(reverse('topic', args=[topic_id]))
+            return HttpResponseRedirect(reverse('topic', args=[topic_id]))
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
+
 
 @login_required
 def edit_entry(request, entry_id):
@@ -88,8 +91,9 @@ def edit_entry(request, entry_id):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('entry', args=[entry.id]))
-    context = {'entry': entry, 'topic':topic, 'form': form}
+    context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
+
 
 def entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
@@ -105,15 +109,17 @@ def entry(request, entry_id):
             comment.post = entry
             comment.name = request.user
             comment.save()
-            return  HttpResponseRedirect(reverse('entry', args=[entry_id]))
+            return HttpResponseRedirect(reverse('entry', args=[entry_id]))
 
-    context = {'entry': entry, 'topic':topic, 'form':form, 'all_comments':all_comments, 'delete_entry':delete_entry}
+    context = {'entry': entry, 'topic': topic, 'form': form, 'all_comments': all_comments, 'delete_entry': delete_entry}
     return render(request, 'learning_logs/entry.html', context)
+
 
 @login_required
 def delete_entry(request, topic_id, entry_id):
     entry = Entry.objects.filter(id=entry_id).delete()
     return HttpResponseRedirect(reverse('topic', args=[topic_id]))
+
 
 @login_required
 def add_to_fav(request, entry_id):
@@ -125,6 +131,7 @@ def add_to_fav(request, entry_id):
         end = 'Данная статья уже добавлена в избранное'
     return HttpResponseRedirect(reverse('entry', args=[entry_id]))
 
+
 @login_required
 def remove_from_fav(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
@@ -135,6 +142,7 @@ def remove_from_fav(request, entry_id):
         end = 'Данная статья уже удалена из избранного'
     return HttpResponseRedirect(reverse('favourites'))
 
+
 @login_required
 def favourites(request):
     favourites = Entry.objects.filter(like=request.user)
@@ -142,15 +150,16 @@ def favourites(request):
     for fav in favourites:
         if len(fav.text) > 50:
             fav.text = fav.text[:50]
-    context = {'favourites': favourites,  'read_more':read_more}
+    context = {'favourites': favourites, 'read_more': read_more}
     return render(request, 'learning_logs/favourites.html', context)
+
 
 @login_required
 def edit_comment(request, entry_id, comment_id):
     comment = Comment.objects.get(id=comment_id)
     entry = comment.post
-    #all_comments = Comment.objects.filter(post=entry)
-    #for comment in all_comments:
+    # all_comments = Comment.objects.filter(post=entry)
+    # for comment in all_comments:
     if comment.name != request.user:
         raise Http404
     else:
@@ -161,14 +170,5 @@ def edit_comment(request, entry_id, comment_id):
             if form.is_valid():
                 comment.save()
                 return HttpResponseRedirect(reverse('entry', args=[entry_id]))
-    context = {'comment': comment, 'entry':entry, 'form': form}
+    context = {'comment': comment, 'entry': entry, 'form': form}
     return render(request, 'learning_logs/edit_comment.html', context)
-
-
-
-
-
-
-
-
-

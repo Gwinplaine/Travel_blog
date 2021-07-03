@@ -23,7 +23,7 @@ def blogtopic(request, blogtopic_id):
     blogentries = blogtopic.blogentry_set.order_by('-blogdate_added')
     for blogentry in blogentries:
         if len(blogentry.blogtext) > 50:
-            blogentry.text = blogentry.blogtext[:50]
+            blogentry.blogtext = blogentry.blogtext[:50]
     context = {'blogtopic': blogtopic, 'blogentries':blogentries, 'read_more':read_more}
     return render(request, 'blog/blogtopic.html', context)
 
@@ -34,7 +34,7 @@ def new_blogentry(request, blogtopic_id):
     if request.method != 'POST':
         form = BlogentryForm()
     else:
-        form = BlogentryForm(data=request.POST)
+        form = BlogentryForm(request.POST, request.FILES) #data=
         if form.is_valid():
             new_blogentry = form.save(commit=False)
             new_blogentry.blogtopic = blogtopic

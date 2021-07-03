@@ -2,7 +2,19 @@
 {% load bootstrap3 %}
 {% load static %}
 {% block header %}
+<style>
+  .center-img {
+    display: block;
+    margin: 0 auto;
+    height: 300px;
+  }
+</style>
   <h2>{{ blogentry.blogtitle }}</h2>
+  <p>
+    <small>
+      <a href="{% url 'blog:blogtopic' blogtopic.id %}">Вернуться ко всем статьям темы "{{ blogtopic }}"</a>
+    </small>
+  </p>
 {% endblock header %}
 
 {% block content %}
@@ -14,6 +26,7 @@
     </h5>
   </div>
   <div class="panel-body">
+    <img src="{{ blogentry.blogentryimage.url }}" alt='' class='center-img' >
     {{ blogentry.blogtext|linebreaks }}
   </div>
   <div class="panel-body">
