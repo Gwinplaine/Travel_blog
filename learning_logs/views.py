@@ -27,7 +27,6 @@ def topics(request):
     context = {'topics':topics}
     return render(request, 'learning_logs/topics.html', context)
 
-
 def topic(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
     read_more = '...продолжить читать статью'
@@ -48,17 +47,18 @@ def new_topic(request):
         form = TopicForm()
     else:
         #отправлены данные POST; обработать данные
-        form = TopicForm(request.POST)
+        form = TopicForm(request.POST, request.FILES)
         if form.is_valid():
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
+            # new_topic.topicimage = form.instance
             new_topic.save()
             return HttpResponseRedirect(reverse('topics'))
 
-    context = {'form': form}
+    context = { 'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
 
-@login_required
+
 def new_entry(request, topic_id):
     if request.user.username != 'denis':
         return render(request, 'learning_logs/foradmin.html')

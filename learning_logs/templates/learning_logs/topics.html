@@ -1,15 +1,28 @@
 {% extends "learning_logs/base.html" %}
+{%load static%}
 {% block header %}
   <h2>Разделы статей</h2>
+  <style>
+   .round {
+    border-radius: 10px; /* Радиус скругления */
+    border: 3px solid green; /* Параметры рамки */
+    box-shadow: 0 0 5px #666; /* Параметры тени */
+   }
+  </style>
+
+
 {% endblock header %}
 
 {% block content %}
   <ul>
     {% for topic in topics %}
-    <div class="panel panel-default" style="width:252px; background-color: #c3f6c3">
-      <div class="panel-heading" style="width:250px; background-color: #c3f6c3">
+    <div class="panel panel-default" style="width:852px; background-color: #c3f6c3">
+      <div class="panel-heading" style="width:850px; background-color: #c3f6c3">
         <h4>
-          <a href="{% url 'topic' topic.id %}">{{ topic }}</a>
+          <img src="{{topic.topicimage.url}}" width='80px' alt='' class='round'>
+
+          <!-- <img src="{% static 'topics/shtanga.jpg'  %}" width='130px'> -->
+          <a href="{% url 'topic' topic.id %}">{{ topic }} </a>
         </h4>
       </div>
     </div>

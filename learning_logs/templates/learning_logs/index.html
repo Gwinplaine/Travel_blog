@@ -1,10 +1,12 @@
 {% extends "learning_logs/base.html" %}
 {% block header %}
+  {% if user.is_authenticated %}
 <h3>Привет, {{ user.username }}, мы рады видеть тебя у нас!<br>
   <p></p>
   <p></p>
   Что у нас новенького?<br>
 </h3>
+{% endif %}
 {% endblock header %}
 
 {% block content %}
