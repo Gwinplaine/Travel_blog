@@ -1,14 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Blogtopic(models.Model):
     '''Тема, которую изучает пользователь'''
     blogtext = models.CharField(max_length=200)
     blogdate_added = models.DateTimeField(auto_now_add=True)
-    #blogowner=models.ForeignKey(User, on_delete=models.CASCADE)
+    # blogowner=models.ForeignKey(User, on_delete=models.CASCADE)
     blogtopicimage = models.ImageField(upload_to='images', blank=True, null=True)
+
     def __str__(self):
         return self.blogtext
+
 
 class Blogentry(models.Model):
     '''информация, изученная по теме'''
@@ -27,6 +30,7 @@ class Blogentry(models.Model):
         else:
             return self.blogtext
 
+
 class Blogcomment(models.Model):
     blogpost = models.ForeignKey(Blogentry, on_delete=models.CASCADE, related_name='blogcomments')
     blogname = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -34,6 +38,3 @@ class Blogcomment(models.Model):
     blogcreated = models.DateTimeField(auto_now_add=True)
     blogupdated = models.DateTimeField(auto_now=True)
     blogactive = models.BooleanField(default=True)
-
-
-

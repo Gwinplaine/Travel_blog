@@ -1,43 +1,43 @@
 {% extends 'learning_logs/base.html' %}
 {% block header %}
-  <h2>{{ blogtopic }}</h2>
+<h2>{{ blogtopic }}</h2>
 {% endblock header %}
 
 {% block content %}
-  <p>
+<p>
     <a href="{% url 'blog:new_blogentry' blogtopic.id %}">Добавить новую статью</a>
-  </p>
-  {% for blogentry in blogentries %}
-    <div class="panel panel-default">
-      <div class="panel-heading">
+</p>
+{% for blogentry in blogentries %}
+<div class="panel panel-default">
+    <div class="panel-heading">
         <h5>
-          <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>
+            <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>
         </h5>
-      </div>
-      <div class="panel-body">
+    </div>
+    <div class="panel-body">
         {{ blogentry.blogtext }}
         <small>
-          <a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a>
+            <a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a>
         </small>
         <p>
-          <h5><small>
+        <h5><small>
             Добавлено пользователем
             <a href="{% url 'blog:alluserentries' blogentry.blogentryowner.id %}">{{blogentry.blogentryowner}} </a>
             в {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
-          </small></h5>
+        </small></h5>
         </p>
         {% if user == blogentry.blogentryowner %}
         <small>
-          <a href="{% url 'blog:edit_blogentry' blogentry.id %}">Редактировать статью</a>
+            <a href="{% url 'blog:edit_blogentry' blogentry.id %}">Редактировать статью</a>
         </small>
         <small>
-          | <a href="{% url 'blog:delete_blogentry' blogtopic.id blogentry.id %}">Удалить статью</a>
+            | <a href="{% url 'blog:delete_blogentry' blogtopic.id blogentry.id %}">Удалить статью</a>
         </small>
         {%endif%}
-      </div>
     </div>
-  {% empty %}
-  Упс! По данной теме ещё нет ни одной статьи... Станьте первым, жмите на ссылку
-  "Добавить новую статью"!
-  {% endfor %}
+</div>
+{% empty %}
+Упс! По данной теме ещё нет ни одной статьи... Станьте первым, жмите на ссылку
+"Добавить новую статью"!
+{% endfor %}
 {% endblock content %}

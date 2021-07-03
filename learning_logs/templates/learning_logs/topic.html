@@ -1,46 +1,46 @@
 {% extends 'learning_logs/base.html' %}
 {% block header %}
-  <h2>{{ topic }}</h2>
+<h2>{{ topic }}</h2>
 {% endblock header %}
 
 {% block content %}
 
 {%if user.username == 'denis'%}
-<div class="panel-body" >
-  <p>
-    <a href="{% url 'new_entry' topic.id %}">Добавить новую статью</a>
-  </p>
+<div class="panel-body">
+    <p>
+        <a href="{% url 'new_entry' topic.id %}">Добавить новую статью</a>
+    </p>
 </div>
 {%endif%}
-  {% for entry in entries %}
-    <div class="panel panel-default">
-      <div class="panel-heading">
+{% for entry in entries %}
+<div class="panel panel-default">
+    <div class="panel-heading">
         <h5>
-          <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>
+            <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>
         </h5>
-      </div>
-      <div class="panel-body">
+    </div>
+    <div class="panel-body">
         {{ entry.text }}
         <small>
-          <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
+            <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
         </small>
         <p>
-          <small>
-            Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
-          </small>
+            <small>
+                Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
+            </small>
         </p>
         {%if user.username == 'denis'%}
-          <small>
+        <small>
             <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
-          </small>
-          <small>
+        </small>
+        <small>
             |<a href="{% url 'delete_entry' topic.id entry.id %}">Удалить статью</a>
-          </small>
+        </small>
         {%endif%}
-      </div>
     </div>
-  {% empty %}
-  Упс! По данной теме ещё нет ни одной статьи... Станьте первым, жмите на ссылку
-  "Добавить новую статью"!
-  {% endfor %}
+</div>
+{% empty %}
+Упс! По данной теме ещё нет ни одной статьи... Станьте первым, жмите на ссылку
+"Добавить новую статью"!
+{% endfor %}
 {% endblock content %}

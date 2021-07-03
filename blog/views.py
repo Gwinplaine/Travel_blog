@@ -9,12 +9,12 @@ from .models import Blogtopic, Blogentry, Blogcomment
 from .forms import BlogtopicForm, BlogentryForm, BlogcommentForm
 
 
-
 @login_required
 def blogtopics(request):
     blogtopics = Blogtopic.objects.order_by('blogdate_added')
     context = {'blogtopics': blogtopics}
     return render(request, 'blog/blogtopics.html', context)
+
 
 @login_required
 def blogtopic(request, blogtopic_id):
@@ -24,7 +24,7 @@ def blogtopic(request, blogtopic_id):
     for blogentry in blogentries:
         if len(blogentry.blogtext) > 50:
             blogentry.blogtext = blogentry.blogtext[:50]
-    context = {'blogtopic': blogtopic, 'blogentries':blogentries, 'read_more':read_more}
+    context = {'blogtopic': blogtopic, 'blogentries': blogentries, 'read_more': read_more}
     return render(request, 'blog/blogtopic.html', context)
 
 
@@ -34,15 +34,16 @@ def new_blogentry(request, blogtopic_id):
     if request.method != 'POST':
         form = BlogentryForm()
     else:
-        form = BlogentryForm(request.POST, request.FILES) #data=
+        form = BlogentryForm(request.POST, request.FILES)  # data=
         if form.is_valid():
             new_blogentry = form.save(commit=False)
             new_blogentry.blogtopic = blogtopic
             new_blogentry.blogentryowner = request.user
             new_blogentry.save()
-            return  HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic_id]))
+            return HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic_id]))
     context = {'blogtopic': blogtopic, 'form': form}
     return render(request, 'blog/new_blogentry.html', context)
+
 
 @login_required
 def edit_blogentry(request, blogentry_id):
@@ -57,8 +58,9 @@ def edit_blogentry(request, blogentry_id):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry.id]))
-    context = {'blogentry': blogentry, 'blogtopic':blogtopic, 'form': form}
+    context = {'blogentry': blogentry, 'blogtopic': blogtopic, 'form': form}
     return render(request, 'blog/edit_blogentry.html', context)
+
 
 @login_required
 def blogentry(request, blogentry_id):
@@ -74,10 +76,11 @@ def blogentry(request, blogentry_id):
             blogcomment.blogpost = blogentry
             blogcomment.blogname = request.user
             blogcomment.save()
-            return  HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))
+            return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))
 
-    context = {'blogentry': blogentry, 'blogtopic':blogtopic, 'form':form, 'all_comments':all_comments}
+    context = {'blogentry': blogentry, 'blogtopic': blogtopic, 'form': form, 'all_comments': all_comments}
     return render(request, 'blog/blogentry.html', context)
+
 
 def delete_blogentry(request, blogtopic_id, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
@@ -87,6 +90,7 @@ def delete_blogentry(request, blogtopic_id, blogentry_id):
         blogentry = Blogentry.objects.filter(id=blogentry_id)
         blogentry.delete()
     return HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic_id]))
+
 
 @login_required
 def add_to_fav(request, blogentry_id):
@@ -98,6 +102,7 @@ def add_to_fav(request, blogentry_id):
         end = 'Данная статья уже добавлена в избранное'
     return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))
 
+
 @login_required
 def remove_from_fav(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
@@ -108,6 +113,7 @@ def remove_from_fav(request, blogentry_id):
         end = 'Данная статья уже удалена из избранного'
     return HttpResponseRedirect(reverse('blog:blogfavourites'))
 
+
 @login_required
 def blogfavourites(request):
     blogfavourites = Blogentry.objects.filter(bloglike=request.user)
@@ -115,16 +121,17 @@ def blogfavourites(request):
     for fav in blogfavourites:
         if len(fav.blogtext) > 50:
             fav.blogtext = fav.blogtext[:50]
-    context = {'blogfavourites': blogfavourites,  'read_more':read_more}
+    context = {'blogfavourites': blogfavourites, 'read_more': read_more}
     return render(request, 'blog/blogfavourites.html', context)
+
 
 @login_required
 def edit_blogcomment(request, blogentry_id, blogcomment_id):
     blogcomment = Blogcomment.objects.get(id=blogcomment_id)
     blogentry = blogcomment.blogpost
 
-    #all_comments = Comment.objects.filter(post=entry)
-    #for comment in all_comments:
+    # all_comments = Comment.objects.filter(post=entry)
+    # for comment in all_comments:
     if blogcomment.blogname != request.user:
         raise Http404
     else:
@@ -135,25 +142,17 @@ def edit_blogcomment(request, blogentry_id, blogcomment_id):
             if form.is_valid():
                 blogcomment.save()
                 return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))
-    context = {'blogcomment': blogcomment, 'blogentry':blogentry, 'form': form}
+    context = {'blogcomment': blogcomment, 'blogentry': blogentry, 'form': form}
     return render(request, 'blog/edit_blogcomment.html', context)
+
 
 @login_required
 def alluserentries(request, user_id):
     alluserentries = Blogentry.objects.filter(blogentryowner=user_id).order_by('-blogdate_added')
-    #user=alluserentries.objects.get()
+    # user=alluserentries.objects.get()
     read_more = '...продолжить читать статью'
     for blogentry in alluserentries:
         if len(blogentry.blogtext) > 110:
             blogentry.blogtext = blogentry.blogtext[:110]
-    context = {'alluserentries': alluserentries, 'read_more': read_more, 'blogentry':blogentry}
+    context = {'alluserentries': alluserentries, 'read_more': read_more, 'blogentry': blogentry}
     return render(request, 'blog/alluserentries.html', context)
-
-
-
-
-
-
-
-
-

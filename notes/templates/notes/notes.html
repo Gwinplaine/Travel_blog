@@ -1,39 +1,39 @@
 {% extends 'learning_logs/base.html' %}
 {% block header %}
-  <h2>Мои заметки</h2>
+<h2>Мои заметки</h2>
 {% endblock header %}
 
 {% block content %}
-  <p>
+<p>
     <a href="{% url 'notes:new_note' %}">Добавить новую заметку</a>
-  </p>
-  {% for note in notes %}
-    <div class="panel panel-default">
-      <div class="panel-heading">
+</p>
+{% for note in notes %}
+<div class="panel panel-default">
+    <div class="panel-heading">
         <h5>
-          <a href="{% url 'notes:note' note.id %}"> {{note.notestitle}}</a>
+            <a href="{% url 'notes:note' note.id %}"> {{note.notestitle}}</a>
         </h5>
-      </div>
-      <div class="panel-body">
+    </div>
+    <div class="panel-body">
         {{ note.notestext }}
         <small>
-          <a href="{% url 'notes:note' note.id %}">{{ read_more }}</a>
+            <a href="{% url 'notes:note' note.id %}">{{ read_more }}</a>
         </small>
         <p>
-          <small>
-            Опубликовано {{ note.notesdate_added|date:'d.m.Y в H:i' }}
-          </small>
+            <small>
+                Опубликовано {{ note.notesdate_added|date:'d.m.Y в H:i' }}
+            </small>
         </p>
         <small>
-          <a href="{% url 'notes:edit_note' note.id %}">Редактировать заметку</a>
+            <a href="{% url 'notes:edit_note' note.id %}">Редактировать заметку</a>
         </small>
         <small>
-          | <a href="{% url 'notes:delete_note' note.id %}">Удалить заметку</a>
+            | <a href="{% url 'notes:delete_note' note.id %}">Удалить заметку</a>
         </small>
-      </div>
     </div>
-  {% empty %}
-  Упс! Вы пока ещё не добавили ни одной заметки... Начинайте, жмите на ссылку
-  "Добавить новую заметку"!
-  {% endfor %}
+</div>
+{% empty %}
+Упс! Вы пока ещё не добавили ни одной заметки... Начинайте, жмите на ссылку
+"Добавить новую заметку"!
+{% endfor %}
 {% endblock content %}

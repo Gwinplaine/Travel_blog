@@ -8,121 +8,122 @@
     margin: 0 auto;
     height: 300px;
   }
+
 </style>
-  <h2>{{ entry.title }}</h2>
-  <p>
+<h2>{{ entry.title }}</h2>
+<p>
     <small>
-      <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
+        <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
     </small>
-  </p>
+</p>
 {% endblock header %}
 
 {% block content %}
 
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h5>
-      Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
-    </h5>
-  </div>
-  <div class="panel-body">
-    <img src="{{ entry.entryimage.url }}" alt='' class='center-img'>
-
-    {{ entry.text|linebreaks }}
-  </div>
-  <div class="panel-body">
-    <small>
-      <a href="{% url 'add_to_fav' entry.id %}">Добавить статью в избранное</a>
-    </small>
-    {%if user.username == 'denis'%}
-    <small>
-      | <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
-    </small>
-    <small>
-      | <a href="{% url 'delete_entry' topic.id entry.id %}"> Удалить статью</a>
-    </small>
-    {%endif%}
-    <br>
-
-    <small>Поделиться этой статьёй в соцсетях:</small>
-    <a href="http://vk.com/share.php?url=https://Gwin_project.by/entry/{{ entry.id }}"
-      target="_blank" rel="nofollow">
-      <img src="{% static 'sn/vk.jpg'  %}" width='20px'>
-    </a>
-    <a href="https://twitter.com/intent/tweet?text=https://Gwin_project.by/entry/{{ entry.id }}"
-      target="_blank" rel="nofollow">
-      <img src="{% static 'sn/twitter.png'  %}" width='20px'>
-    </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://Gwin_project.by/entry/{{ entry.id }}"
-      target="_blank" rel="nofollow">
-      <img src="{% static 'sn/facebook.png'  %}" width='20px'>
-    </a>
-    <a href="https://connect.ok.ru/offer?url=https://Gwin_project.by/entry/{{ entry.id }}"
-      target="_blank" rel="nofollow">
-      <img src="{% static 'sn/ok.png'  %}" width='20px'>
-    </a>
-    <p></p>
-    <p>
-      <small>
-        <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
-      </small>
-    </p>
-  </div>
-  {% if user.is_authenticated %}
-  <div class="panel-body">
-    <p>Оставить комментарий:</p>
-    <form method="post"  action="{% url 'entry' entry.id %}" class="form" >
-      {% csrf_token %}
-      {% bootstrap_form form %}
-
-      {% buttons %}
-      <button name="submit" class="btn btn-primary">Добавить комментарий</button>
-      {% endbuttons %}
-      <input type="hidden" name="next" value="{% url 'entry' entry.id %}" />
-    </form>
-  </div>
-  {%endif%}
-</div>
-
-<div class="panel-body">
-  <p> Комментарии к статье: </p>
-  {% for comment in all_comments %}
-  <div class="panel panel-default">
     <div class="panel-heading">
-      <h5>
-        Комментарий от пользователя {{ comment.name }}
-        <p><small>Комментарий создан {{comment.created | date:'d.m.Y в H:i'}}<br>
-          {% if comment.created != comment.updated %}
-          Комментарий обновлён {{comment.updated | date:'d.m.Y в H:i'}}
-          {% endif %}
-        </small></p>
-
-      </h5>
+        <h5>
+            Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
+        </h5>
     </div>
     <div class="panel-body">
-      <p>
-        {{ comment.body }}
-      </p>
-      {% if comment.name == request.user %}
-      <h5><p><small>
-        <a href="{% url 'edit_comment' entry.id comment.id  %}">Редактировать комментарий</a>
-      </small></p></h5>
-      {% else %}
-      <p></p>
-      {% endif %}
+        <img src="{{ entry.entryimage.url }}" alt='' class='center-img'>
+
+        {{ entry.text|linebreaks }}
     </div>
-  </div>
-  {% empty %}
-  К этой статье пока не было оставлено никаких комментариев...Станьте первым!
-  {% endfor %}
+    <div class="panel-body">
+        <small>
+            <a href="{% url 'add_to_fav' entry.id %}">Добавить статью в избранное</a>
+        </small>
+        {%if user.username == 'denis'%}
+        <small>
+            | <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
+        </small>
+        <small>
+            | <a href="{% url 'delete_entry' topic.id entry.id %}"> Удалить статью</a>
+        </small>
+        {%endif%}
+        <br>
+
+        <small>Поделиться этой статьёй в соцсетях:</small>
+        <a href="http://vk.com/share.php?url=https://Gwin_project.by/entry/{{ entry.id }}"
+           target="_blank" rel="nofollow">
+            <img src="{% static 'sn/vk.jpg'  %}" width='20px'>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=https://Gwin_project.by/entry/{{ entry.id }}"
+           target="_blank" rel="nofollow">
+            <img src="{% static 'sn/twitter.png'  %}" width='20px'>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://Gwin_project.by/entry/{{ entry.id }}"
+           target="_blank" rel="nofollow">
+            <img src="{% static 'sn/facebook.png'  %}" width='20px'>
+        </a>
+        <a href="https://connect.ok.ru/offer?url=https://Gwin_project.by/entry/{{ entry.id }}"
+           target="_blank" rel="nofollow">
+            <img src="{% static 'sn/ok.png'  %}" width='20px'>
+        </a>
+        <p></p>
+        <p>
+            <small>
+                <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
+            </small>
+        </p>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="panel-body">
+        <p>Оставить комментарий:</p>
+        <form method="post" action="{% url 'entry' entry.id %}" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+
+            {% buttons %}
+            <button name="submit" class="btn btn-primary">Добавить комментарий</button>
+            {% endbuttons %}
+            <input type="hidden" name="next" value="{% url 'entry' entry.id %}"/>
+        </form>
+    </div>
+    {%endif%}
 </div>
 
 <div class="panel-body">
-  <p>
-    <a href="{% url 'entry' entry.id %}">Вернуться к началу статьи "{{ entry.title }}"</a>
-  </p>
-  <p>
-    <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
-  </p>
+    <p> Комментарии к статье: </p>
+    {% for comment in all_comments %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h5>
+                Комментарий от пользователя {{ comment.name }}
+                <p><small>Комментарий создан {{comment.created | date:'d.m.Y в H:i'}}<br>
+                    {% if comment.created != comment.updated %}
+                    Комментарий обновлён {{comment.updated | date:'d.m.Y в H:i'}}
+                    {% endif %}
+                </small></p>
+
+            </h5>
+        </div>
+        <div class="panel-body">
+            <p>
+                {{ comment.body }}
+            </p>
+            {% if comment.name == request.user %}
+            <h5><p><small>
+                <a href="{% url 'edit_comment' entry.id comment.id  %}">Редактировать комментарий</a>
+            </small></p></h5>
+            {% else %}
+            <p></p>
+            {% endif %}
+        </div>
+    </div>
+    {% empty %}
+    К этой статье пока не было оставлено никаких комментариев...Станьте первым!
+    {% endfor %}
+</div>
+
+<div class="panel-body">
+    <p>
+        <a href="{% url 'entry' entry.id %}">Вернуться к началу статьи "{{ entry.title }}"</a>
+    </p>
+    <p>
+        <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
+    </p>
 </div>
 {% endblock content %}

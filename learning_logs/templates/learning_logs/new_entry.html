@@ -1,17 +1,17 @@
 {% extends "learning_logs/base.html" %}
 {% load bootstrap3 %}
 {% block header %}
-  <h4>Добавить новую статью по теме <a href="{% url 'topic' topic.id %}">{{ topic }}</a></h4>
+<h4>Добавить новую статью по теме <a href="{% url 'topic' topic.id %}">{{ topic }}</a></h4>
 {% endblock header %}
 
 {% block content %}
-  <form method="post" action="{% url 'new_entry' topic.id %}" class="form" enctype="multipart/form-data">
+<form method="post" action="{% url 'new_entry' topic.id %}" class="form" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
 
     {% buttons %}
-      <button name="submit" class="btn btn-primary">Добавить статью</button>
+    <button name="submit" class="btn btn-primary">Добавить статью</button>
     {% endbuttons %}
-    <input type="hidden" name="next" value="{% url 'topic' topic.id %}" />
-  </form>
+    <input type="hidden" name="next" value="{% url 'topic' topic.id %}"/>
+</form>
 {% endblock content %}

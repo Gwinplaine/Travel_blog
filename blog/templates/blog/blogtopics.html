@@ -1,31 +1,38 @@
 {% extends "learning_logs/base.html" %}
 {%load static%}
 {% block header %}
-<style>
- .round {
-  border-radius: 10px; /* Радиус скругления */
-  border: 3px solid green; /* Параметры рамки */
-  box-shadow: 0 0 5px #666; /* Параметры тени */
- }
-</style>
-  <h2>Разделы статей</h2>
-
+<h3> Разделы статей </h3>
 {% endblock header %}
 
-{% block content %}
-  <ul>
-    {% for blogtopic in blogtopics %}
-    <div class="panel panel-default" style="width:452px; background-color: #c3f6c3">
-      <div class="panel-heading" style="width:450px; background-color: #c3f6c3">
-        <h4>
-          <img src="{{blogtopic.blogtopicimage.url}}" width='80px' alt='' class='round'>
-          <a href="{% url 'blog:blogtopic' blogtopic.id %}">{{ blogtopic }}</a>
-        </h4>
-      </div>
-    </div>
-    {% empty %}
-    <li>Упс, пока ещё нету ни одного раздела.</li>
-    {% endfor %}
-  </ul>
+{% block content%}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <ul>
+            <div class="row row-cols-1 row-cols-sm-2">
+                {% for blogtopic in blogtopics %}
 
-{% endblock content %}
+                <div class="col" style='width:48%'>
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%"
+                             height="25" xmlns="http://www.w3.org/2000/svg" role="img"
+                             aria-label="  width='80px' alt='' class='round'>"
+                             preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <center><a href="{% url 'blog:blogtopic' blogtopic.id %}"><img
+                                    src="{{blogtopic.blogtopicimage.url}}" height='200px' width='250px'></a></center>
+                        </svg>
+
+                        <div class="card-body">
+                            <center><p class="card-text"><a href="{% url 'blog:blogtopic' blogtopic.id %}">
+                              {{ blogtopic }} </a></p></center>
+                            <div class="d-flex justify-content-between align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <li>Упс, пока ещё нету ни одного раздела.</li>
+                {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content%}

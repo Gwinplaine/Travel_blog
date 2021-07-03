@@ -1,13 +1,13 @@
 {% extends 'learning_logs/base.html' %}
 {% block header %}
-  <h2>{{ entry.title }}</h2>
+<h2>{{ entry.title }}</h2>
 {% endblock header %}
 
 {% block content %}
-  <form method="post" action="{% url 'entry' entry.id %}">
+<form method="post" action="{% url 'entry' entry.id %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit">register</button>
-    <input type="hidden" name="next" value="{% url 'entry' entry.id %}" />
-  </form>
+    <input type="hidden" name="next" value="{% url 'entry' entry.id %}"/>
+</form>
 {% endblock content %}

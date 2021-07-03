@@ -2,38 +2,38 @@
 {% load bootstrap3 %}
 {% load static %}
 {% block header %}
-  <h2>{{ note.notestitle }}</h2>
+<h2>{{ note.notestitle }}</h2>
 {% endblock header %}
 
 {% block content %}
 
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h5>
-      Опубликовано {{ note.notesdate_added|date:'d.m.Y в H:i' }}
-    </h5>
-  </div>
-  <div class="panel-body">
-    {{ note.notestext|linebreaks }}
-  </div>
-  <div class="panel-body">
-    <small>
-      <a href="{% url 'notes:edit_note' note.id %}">Редактировать заметку</a>
-    </small>
-    <small>
-      | <a href="{% url 'notes:delete_note' note.id %}">Удалить заметку</a>
-    </small>
-  </div>
-  <div class="panel-body">
-    <p>
-      <small>
-        <a href="{% url 'notes:note' note.id %}">Вернуться к началу заметки</a>
-      </small>
-      <br>
-      <small>
-        <a href="{% url 'notes:notes' %}">Вернуться ко всем моим заметкам</a>
-      </small>
-    </p>
-  </div>
+    <div class="panel-heading">
+        <h5>
+            Опубликовано {{ note.notesdate_added|date:'d.m.Y в H:i' }}
+        </h5>
+    </div>
+    <div class="panel-body">
+        {{ note.notestext|linebreaks }}
+    </div>
+    <div class="panel-body">
+        <small>
+            <a href="{% url 'notes:edit_note' note.id %}">Редактировать заметку</a>
+        </small>
+        <small>
+            | <a href="{% url 'notes:delete_note' note.id %}">Удалить заметку</a>
+        </small>
+    </div>
+    <div class="panel-body">
+        <p>
+            <small>
+                <a href="{% url 'notes:note' note.id %}">Вернуться к началу заметки</a>
+            </small>
+            <br>
+            <small>
+                <a href="{% url 'notes:notes' %}">Вернуться ко всем моим заметкам</a>
+            </small>
+        </p>
+    </div>
 </div>
 {% endblock content %}

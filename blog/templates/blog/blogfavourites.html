@@ -1,34 +1,34 @@
 {% extends "learning_logs/base.html" %}
 {% block header %}
-  <h2>Избранные статьи</h2>
+<h2>Избранные статьи</h2>
 {% endblock header %}
 
 {% block content %}
-  <ul>
+<ul>
     {% for fav in blogfavourites %}
     <div class="panel panel-default" style="background-color: #c3f6c3">
-      <div class="panel-heading" style="background-color: #c3f6c3">
-        <h5>
-          <a href="{% url 'blog:blogentry' fav.id %}"> {{fav.blogtitle}}</a>
-          <small>
-            {{ fav.blogdate_added|date:'d.m.Y в H:i' }}
-          </small>
-        </h5>
-      </div>
-      <div class="panel-body">
-        {{ fav.blogtext }}
-        <small>
-          <a href="{% url 'blog:blogentry' fav.id %}">{{ read_more }}</a>
-        </small>
-        <p>
-          <a href="{% url 'blog:remove_from_fav' fav.id %}"> Удалить из избранного</a>
-        </p>
-      </div>
+        <div class="panel-heading" style="background-color: #c3f6c3">
+            <h5>
+                <a href="{% url 'blog:blogentry' fav.id %}"> {{fav.blogtitle}}</a>
+                <small>
+                    {{ fav.blogdate_added|date:'d.m.Y в H:i' }}
+                </small>
+            </h5>
+        </div>
+        <div class="panel-body">
+            {{ fav.blogtext }}
+            <small>
+                <a href="{% url 'blog:blogentry' fav.id %}">{{ read_more }}</a>
+            </small>
+            <p>
+                <a href="{% url 'blog:remove_from_fav' fav.id %}"> Удалить из избранного</a>
+            </p>
+        </div>
     </div>
 
     {% empty %}
     <li>У вас ещё нет избранных статей.</li>
     {% endfor %}
-  </ul>
+</ul>
 
 {% endblock content %}

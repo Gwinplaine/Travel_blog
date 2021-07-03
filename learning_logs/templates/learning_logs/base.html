@@ -3,62 +3,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset='utf-8'>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap core CSS -->
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-<!-- Bootstrap core JavaScript -->
+    <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/jquery/jquery-3.6.0.js' %}"></script>
     <script src="{% static   'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <style>
     body { background: url(https://funart.pro/uploads/posts/2021-04/1618603122_59-funart_pro-p-oboi-fon-svetlo-salatovii-61.jpg);
         }
+
     </style>
 
-  <title>Будь здоров!</title>
+    <title>Будь здоров!</title>
 
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-    <div class="container-fluid" >
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
 
-      <a class="navbar-brand" href="{% url 'index' %}">Будь здоров!</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="nav navbar-nav navbar-left">
-          <li><a href="{% url 'topics' %}">Статьи</a></li>
-          <li><a href="{% url 'blog:blogtopics' %}">Блог</a></li>
-          <li><a href="{% url 'favourites' %}">Избранное из статей</a></li>
-          <li><a href="{% url 'blog:blogfavourites' %}">Избранное из блога</a></li>
-          <li><a href="{% url 'notes:notes' %}">Мои заметки</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          {% if user.is_authenticated %}
-          <li><a>Привет, {{ user.username }}.</a></li>
-          <li><a href="{% url 'users:logout' %}">Выйти из аккаунта</a></li>
-          {% else %}
-          <li><a href="{% url 'users:register' %}">Зарегистрироваться</a></li>
-          <li><a href="{% url 'users:login' %}">Войти в аккаунт</a></li>
-          {% endif %}
-        </ul>
-      </div>
+        <a class="navbar-brand" href="{% url 'index' %}">Будь здоров!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="{% url 'topics' %}">Статьи</a></li>
+                <li><a href="{% url 'blog:blogtopics' %}">Блог</a></li>
+                <li><a href="{% url 'favourites' %}">Избранное из статей</a></li>
+                <li><a href="{% url 'blog:blogfavourites' %}">Избранное из блога</a></li>
+                <li><a href="{% url 'notes:notes' %}">Мои заметки</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li><a>Привет, {{ user.username }}.</a></li>
+                <li><a href="{% url 'users:logout' %}">Выйти из аккаунта</a></li>
+                {% else %}
+                <li><a href="{% url 'users:register' %}">Зарегистрироваться</a></li>
+                <li><a href="{% url 'users:login' %}">Войти в аккаунт</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-  </nav>
-  <div class="container">
+</nav>
+<div class="container">
     <div class="page-header">
-      {% block header %}{% endblock header %}
+        {% block header %}{% endblock header %}
     </div>
     <div>
-      {% block content %}{% endblock content %}
+        {% block content %}{% endblock content %}
     </div>
-  </div>
+</div>
 </body>
 </html>

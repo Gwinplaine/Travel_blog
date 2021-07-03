@@ -70,7 +70,7 @@ def new_entry(request, topic_id):
     else:
         form = EntryForm(request.POST, request.FILES)
         if form.is_valid():
-            new_entry = form.save(commit=False) #data
+            new_entry = form.save(commit=False)  # data
             new_entry.topic = topic
             new_entry.save()
             return HttpResponseRedirect(reverse('topic', args=[topic_id]))

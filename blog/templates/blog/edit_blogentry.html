@@ -1,17 +1,17 @@
 {% extends "learning_logs/base.html" %}
 {% load bootstrap3 %}
 {% block header %}
-  <h4>Редактировать статью темы <a href="{% url 'blog:blogtopic' blogtopic.id %}">{{ blogtopic }}</a>:</h4>
+<h4>Редактировать статью темы <a href="{% url 'blog:blogtopic' blogtopic.id %}">{{ blogtopic }}</a>:</h4>
 {% endblock header %}
 
 {% block content %}
-  <form method="post" action="{% url 'blog:edit_blogentry' blogentry.id %}" class="form" enctype="multipart/form-data">
+<form method="post" action="{% url 'blog:edit_blogentry' blogentry.id %}" class="form" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
 
     {% buttons %}
     <button name="submit" class="btn btn-primary">Редактировать статью</button>
     {% endbuttons %}
-    <input type="hidden" name="next" value="{% url 'blog:blogtopic' blogtopic.id %}" />
-  </form>
+    <input type="hidden" name="next" value="{% url 'blog:blogtopic' blogtopic.id %}"/>
+</form>
 {% endblock content %}

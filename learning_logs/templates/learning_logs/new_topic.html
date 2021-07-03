@@ -1,16 +1,16 @@
 {% extends "learning_logs/base.html" %}
 {% load bootstrap3 %}
 {% block header %}
-  <h2>Добавить новый раздел:</h2>
+<h2>Добавить новый раздел:</h2>
 {% endblock header %}
 
 {% block content %}
-  <form action="{% url 'new_topic' %}" method='post' class="form" enctype="multipart/form-data">
+<form action="{% url 'new_topic' %}" method='post' class="form" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
 
     {% buttons %}
-      <button name="submit" class="btn btn-primary">Добавить раздел</button>
+    <button name="submit" class="btn btn-primary">Добавить раздел</button>
     {% endbuttons %}
-  </form>
+</form>
 {% endblock content %}
