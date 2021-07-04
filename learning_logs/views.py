@@ -9,6 +9,7 @@ from blog.models import Blogtopic, Blogentry
 from .forms import TopicForm, EntryForm, CommentForm
 
 
+# функия представления стартовой страницы
 def index(request):
     top = Entry.objects.order_by('-date_added')[:5]
     blogtop = Blogentry.objects.order_by('-blogdate_added')[:5]
@@ -25,13 +26,14 @@ def index(request):
     return render(request, 'learning_logs/index.html', context)
 
 
+# функция представления всех разделов на странице
 def topics(request):
-    'выводит список тем'
     topics = Topic.objects.order_by('date_added')
     context = {'topics': topics}
     return render(request, 'learning_logs/topics.html', context)
 
 
+# функция представления всех статей раздела на странице
 def topic(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
     read_more = '...продолжить читать статью'
@@ -43,21 +45,18 @@ def topic(request, topic_id):
     return render(request, 'learning_logs/topic.html', context)
 
 
+# функция добавления нового раздела
 @login_required
 def new_topic(request):
     if request.user.username != 'denis':
         return render(request, 'learning_logs/foradmin.html')
-    '''определяет новую тему'''
     if request.method != 'POST':
-        # данные не отправлялись, создаётся пустая форма.
         form = TopicForm()
     else:
-        # отправлены данные POST; обработать данные
         form = TopicForm(request.POST, request.FILES)
         if form.is_valid():
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
-            # new_topic.topicimage = form.instance
             new_topic.save()
             return HttpResponseRedirect(reverse('topics'))
 
@@ -65,6 +64,7 @@ def new_topic(request):
     return render(request, 'learning_logs/new_topic.html', context)
 
 
+# функция добавления новой статьи в раздел
 def new_entry(request, topic_id):
     if request.user.username != 'denis':
         return render(request, 'learning_logs/foradmin.html')
@@ -74,7 +74,7 @@ def new_entry(request, topic_id):
     else:
         form = EntryForm(request.POST, request.FILES)
         if form.is_valid():
-            new_entry = form.save(commit=False)  # data
+            new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
             return HttpResponseRedirect(reverse('topic', args=[topic_id]))
@@ -82,6 +82,7 @@ def new_entry(request, topic_id):
     return render(request, 'learning_logs/new_entry.html', context)
 
 
+# функция изменения статьи
 @login_required
 def edit_entry(request, entry_id):
     if request.user.username != 'denis':
@@ -99,6 +100,7 @@ def edit_entry(request, entry_id):
     return render(request, 'learning_logs/edit_entry.html', context)
 
 
+# функция представления страницы статьи
 @login_required
 def entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
@@ -124,12 +126,14 @@ def entry(request, entry_id):
     return render(request, 'learning_logs/entry.html', context)
 
 
+# функция удаления статьи
 @login_required
 def delete_entry(request, topic_id, entry_id):
     entry = Entry.objects.filter(id=entry_id).delete()
     return HttpResponseRedirect(reverse('topic', args=[topic_id]))
 
 
+# функция добавления статьи в избранное
 @login_required
 def add_to_fav(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
@@ -141,6 +145,7 @@ def add_to_fav(request, entry_id):
     return HttpResponseRedirect(reverse('entry', args=[entry_id]))
 
 
+# функция удаления статьи из избранного
 @login_required
 def remove_from_fav(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
@@ -152,6 +157,7 @@ def remove_from_fav(request, entry_id):
     return HttpResponseRedirect(reverse('favourites'))
 
 
+# функция представления страницы избранного
 @login_required
 def favourites(request):
     favourites = Entry.objects.filter(like=request.user)
@@ -163,12 +169,11 @@ def favourites(request):
     return render(request, 'learning_logs/favourites.html', context)
 
 
+# функция изменения комментария
 @login_required
 def edit_comment(request, entry_id, comment_id):
     comment = Comment.objects.get(id=comment_id)
     entry = comment.post
-    # all_comments = Comment.objects.filter(post=entry)
-    # for comment in all_comments:
     if comment.name != request.user:
         raise Http404
     else:

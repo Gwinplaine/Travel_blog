@@ -9,6 +9,7 @@
     height: 300px;
   }
 
+
 </style>
 <h2>{{ blogentry.blogtitle }}</h2>
 <p>
@@ -31,7 +32,7 @@
         {{ blogentry.blogtext|linebreaks }}
     </div>
     <div class="panel-body">
-      {% if end == 'needtoadd'%}
+        {% if end == 'needtoadd'%}
         <small>
             <a href="{% url 'blog:add_to_fav' blogentry.id %}">Добавить статью в избранное</a>
         </small>

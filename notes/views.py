@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from datetime import datetime
 
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -9,6 +8,7 @@ from .models import Notesentry
 from .forms import NotesentryForm
 
 
+# функция представления всех заметок на странице
 @login_required
 def notes(request):
     notes = Notesentry.objects.filter(notesowner=request.user).order_by('-notesdate_added')
@@ -23,6 +23,7 @@ def notes(request):
     return render(request, 'notes/notes.html', context)
 
 
+# функция представления заметки
 @login_required
 def note(request, note_id):
     note = Notesentry.objects.get(id=note_id)
@@ -32,16 +33,12 @@ def note(request, note_id):
     return render(request, 'notes/note.html', context)
 
 
+# функция добавления новой заметки
 @login_required
 def new_note(request):
-    notes = Notesentry.objects.filter(notesowner=request.user).order_by('notesdate_added')
-    # if note.notesowner != request.user:
-    #   raise Http404
     if request.method != 'POST':
-        # данные не отправлялись, создаётся пустая форма.
         form = NotesentryForm()
     else:
-        # отправлены данные POST; обработать данные
         form = NotesentryForm(request.POST)
         if form.is_valid():
             new_note = form.save(commit=False)
@@ -52,6 +49,7 @@ def new_note(request):
     return render(request, 'notes/new_note.html', context)
 
 
+# функция изменения заметки
 @login_required
 def edit_note(request, note_id):
     note = Notesentry.objects.get(id=note_id)
@@ -67,7 +65,7 @@ def edit_note(request, note_id):
     context = {'note': note, 'form': form}
     return render(request, 'notes/edit_note.html', context)
 
-
+# функция удаления заметки
 @login_required
 def delete_note(request, note_id):
     note = Notesentry.objects.get(id=note_id)

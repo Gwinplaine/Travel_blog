@@ -6,8 +6,8 @@
 {% block content %}
 <ul>
     {% for fav in favourites %}
-    <div class="panel panel-default" style="background-color: #c3f6c3">
-        <div class="panel-heading" style="background-color: #c3f6c3">
+    <div class="panel panel-default">
+        <div class="panel-heading">
             <h5>
                 <a href="{% url 'entry' fav.id %}"> {{fav.title}}</a>
                 <small>

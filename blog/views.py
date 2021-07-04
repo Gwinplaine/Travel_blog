@@ -8,6 +8,7 @@ from .models import Blogtopic, Blogentry, Blogcomment
 from .forms import BlogentryForm, BlogcommentForm
 
 
+# функция представления всех разделов на странице
 @login_required
 def blogtopics(request):
     blogtopics = Blogtopic.objects.order_by('blogdate_added')
@@ -15,6 +16,7 @@ def blogtopics(request):
     return render(request, 'blog/blogtopics.html', context)
 
 
+# функция представления всех статей раздела на странице
 @login_required
 def blogtopic(request, blogtopic_id):
     blogtopic = Blogtopic.objects.get(id=blogtopic_id)
@@ -27,13 +29,14 @@ def blogtopic(request, blogtopic_id):
     return render(request, 'blog/blogtopic.html', context)
 
 
+# функция добавления новой статьи в раздел
 @login_required
 def new_blogentry(request, blogtopic_id):
     blogtopic = Blogtopic.objects.get(id=blogtopic_id)
     if request.method != 'POST':
         form = BlogentryForm()
     else:
-        form = BlogentryForm(request.POST, request.FILES)  # data=
+        form = BlogentryForm(request.POST, request.FILES)
         if form.is_valid():
             new_blogentry = form.save(commit=False)
             new_blogentry.blogtopic = blogtopic
@@ -44,6 +47,7 @@ def new_blogentry(request, blogtopic_id):
     return render(request, 'blog/new_blogentry.html', context)
 
 
+# функция изменения статьи
 @login_required
 def edit_blogentry(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
@@ -61,6 +65,7 @@ def edit_blogentry(request, blogentry_id):
     return render(request, 'blog/edit_blogentry.html', context)
 
 
+# функция представления страницы статьи
 @login_required
 def blogentry(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
@@ -85,6 +90,7 @@ def blogentry(request, blogentry_id):
     return render(request, 'blog/blogentry.html', context)
 
 
+# функция удаления статьи
 def delete_blogentry(request, blogtopic_id, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
     if blogentry.blogentryowner != request.user:
@@ -95,6 +101,7 @@ def delete_blogentry(request, blogtopic_id, blogentry_id):
     return HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic_id]))
 
 
+# функция добавления статьи в избранное
 @login_required
 def add_to_fav(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
@@ -106,6 +113,7 @@ def add_to_fav(request, blogentry_id):
     return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))
 
 
+# функция удаления статьи из избранного
 @login_required
 def remove_from_fav(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
@@ -117,6 +125,7 @@ def remove_from_fav(request, blogentry_id):
     return HttpResponseRedirect(reverse('blog:blogfavourites'))
 
 
+# функция представления страницы избранного
 @login_required
 def blogfavourites(request):
     blogfavourites = Blogentry.objects.filter(bloglike=request.user)
@@ -128,6 +137,7 @@ def blogfavourites(request):
     return render(request, 'blog/blogfavourites.html', context)
 
 
+# функция изменения комментария
 @login_required
 def edit_blogcomment(request, blogentry_id, blogcomment_id):
     blogcomment = Blogcomment.objects.get(id=blogcomment_id)
@@ -149,10 +159,10 @@ def edit_blogcomment(request, blogentry_id, blogcomment_id):
     return render(request, 'blog/edit_blogcomment.html', context)
 
 
+# функция представления страницы всех статей определенного пользователя
 @login_required
 def alluserentries(request, user_id):
     alluserentries = Blogentry.objects.filter(blogentryowner=user_id).order_by('-blogdate_added')
-    # user=alluserentries.objects.get()
     read_more = '...продолжить читать статью'
     for blogentry in alluserentries:
         if len(blogentry.blogtext) > 110:

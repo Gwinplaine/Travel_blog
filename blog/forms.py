@@ -2,6 +2,7 @@ from django import forms
 from .models import Blogtopic, Blogentry, Blogcomment
 
 
+# форма для модели Blogtopic с указанием полей и их обозначениями
 class BlogtopicForm(forms.ModelForm):
     class Meta:
         model = Blogtopic
@@ -9,6 +10,7 @@ class BlogtopicForm(forms.ModelForm):
         labels = {'blogtext': 'Название раздела', 'blogtopicimage': 'Загрузите изображение'}
 
 
+# форма для модели Blogentry с указанием полей и их обозначениями
 class BlogentryForm(forms.ModelForm):
     class Meta:
         model = Blogentry
@@ -17,6 +19,7 @@ class BlogentryForm(forms.ModelForm):
         widgets = {'blogtext': forms.Textarea(attrs={'cols': 80})}
 
 
+# форма для модели Blogcomment с указанием полей и их обозначениями
 class BlogcommentForm(forms.ModelForm):
     class Meta:
         model = Blogcomment
