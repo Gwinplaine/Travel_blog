@@ -21,7 +21,7 @@ def index(request):
     for blogentry in blogtop:
         if len(blogentry.blogtext) > 110:
             blogentry.blogtext = blogentry.blogtext[:110]
-    context = {'top': top, 'blogtop':blogtop, 'read_more': read_more, 'topic': topic, 'id': id}
+    context = {'top': top, 'blogtop': blogtop, 'read_more': read_more, 'topic': topic, 'id': id}
     return render(request, 'learning_logs/index.html', context)
 
 
@@ -98,12 +98,12 @@ def edit_entry(request, entry_id):
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
 
+
 @login_required
 def entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
     if request.user not in entry.like.all():
-        entry.like.add(request.user)
         end = 'needtoadd'
     else:
         end = 'Данная статья уже добавлена в избранное'
@@ -119,7 +119,8 @@ def entry(request, entry_id):
             comment.save()
             return HttpResponseRedirect(reverse('entry', args=[entry_id]))
 
-    context = {'entry': entry, 'topic': topic, 'form': form, 'all_comments': all_comments, 'delete_entry': delete_entry, 'end': end}
+    context = {'entry': entry, 'topic': topic, 'form': form, 'all_comments': all_comments, 'delete_entry': delete_entry,
+               'end': end}
     return render(request, 'learning_logs/entry.html', context)
 
 

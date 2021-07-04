@@ -66,7 +66,6 @@ def blogentry(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
     blogtopic = blogentry.blogtopic
     if request.user not in blogentry.bloglike.all():
-        blogentry.bloglike.add(request.user)
         end = 'needtoadd'
     else:
         end = 'Данная статья уже добавлена в избранное'

@@ -31,14 +31,12 @@
         {{ entry.text|linebreaks }}
     </div>
     <div class="panel-body">
-      {% if user.is_authenticated %}
       {% if end == 'needtoadd'%}
         <small>
             <a href="{% url 'add_to_fav' entry.id %}">Добавить статью в избранное</a>
         </small>
         {% else %}
         <small><a href="{% url 'remove_from_fav' entry.id %}"> Удалить статью из избранного</a></small>
-        {% endif %}
         {% endif %}
         {%if user.username == 'denis'%}
         <small>
