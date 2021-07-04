@@ -1,23 +1,27 @@
 from django.shortcuts import render
-from datetime import datetime
 
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from .models import Topic, Entry, Comment
+from blog.models import Blogtopic, Blogentry
 from .forms import TopicForm, EntryForm, CommentForm
 
 
 def index(request):
     top = Entry.objects.order_by('-date_added')[:5]
+    blogtop = Blogentry.objects.order_by('-blogdate_added')[:5]
     read_more = '...продолжить читать статью'
     for entry in top:
         topic = entry.topic
         id = topic.id
         if len(entry.text) > 110:
             entry.text = entry.text[:110]
-    context = {'top': top, 'read_more': read_more, 'topic': topic, 'id': id}
+    for blogentry in blogtop:
+        if len(blogentry.blogtext) > 110:
+            blogentry.blogtext = blogentry.blogtext[:110]
+    context = {'top': top, 'blogtop':blogtop, 'read_more': read_more, 'topic': topic, 'id': id}
     return render(request, 'learning_logs/index.html', context)
 
 
@@ -98,7 +102,11 @@ def edit_entry(request, entry_id):
 def entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
-
+    if request.user not in entry.like.all():
+        entry.like.add(request.user)
+        end = 'needtoadd'
+    else:
+        end = 'Данная статья уже добавлена в избранное'
     all_comments = Comment.objects.filter(active=True, post=entry).order_by('created')
     if request.method != 'POST':
         form = CommentForm()
@@ -111,7 +119,7 @@ def entry(request, entry_id):
             comment.save()
             return HttpResponseRedirect(reverse('entry', args=[entry_id]))
 
-    context = {'entry': entry, 'topic': topic, 'form': form, 'all_comments': all_comments, 'delete_entry': delete_entry}
+    context = {'entry': entry, 'topic': topic, 'form': form, 'all_comments': all_comments, 'delete_entry': delete_entry, 'end': end}
     return render(request, 'learning_logs/entry.html', context)
 
 
@@ -126,7 +134,7 @@ def add_to_fav(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     if request.user not in entry.like.all():
         entry.like.add(request.user)
-        end = ''
+        end = 'needtoadd'
     else:
         end = 'Данная статья уже добавлена в избранное'
     return HttpResponseRedirect(reverse('entry', args=[entry_id]))

@@ -2,8 +2,6 @@
 {% block header %}
 {% if user.is_authenticated %}
 <h3>Привет, {{ user.username }}, мы рады видеть тебя у нас!<br>
-    <p></p>
-    <p></p>
     Что у нас новенького?<br>
 </h3>
 {% endif %}
@@ -13,30 +11,60 @@
 {% load static %}
 
 {% if user.is_authenticated %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>5 последних статей:</h4>
+      {%for entry in top%}
+      <div class="panel panel-default" style="width: 502px">
+          <div class="panel-heading" style="width: 500px">
+          <small>Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
+          </small>
+          <br>
+          Статья из раздела
+          <a href="{% url 'topic' entry.topic.id %}"> "{{entry.topic}}"</a> -
+          <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>:
+      </div>
+      <div class="panel-body" style="width: 500px">
+          {{ entry.text }}
+          <small>
+              <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
+          </small>
+          </div>
+          <p>
+          </p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col">
+      <h4>5 последних постов блога:</h4>
+      {%for blogentry in blogtop%}
+      <div class="panel panel-default" style="width: 502px">
+          <div class="panel-heading" style="width: 500px">
+          <small>Опубликовано {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
+            пользователем <a href="{% url 'blog:alluserentries' blogentry.blogentryowner.id %}">
+              {{blogentry.blogentryowner}}</a>
+          </small>
+          <br>
+          Статья из раздела
+          <a href="{% url 'blog:blogtopic' blogentry.blogtopic.id %}"> "{{blogentry.blogtopic}}"</a> -
+          <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>:
+      </div>
+      <div class="panel-body" style="width: 500px">
+          {{ blogentry.blogtext }}
+          <small>
+              <a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a>
+          </small>
+          </div>
+          <p>
+          </p>
+      </div>
 
-<h4>5 последних статей:</h4>
-{%for entry in top%}
-<div class="panel panel-default">
-    <div class="panel-heading"
-    ">
-    <small>Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
-    </small>
-    <br>
-    Статья из раздела
-    <a href="{% url 'topic' entry.topic.id %}"> "{{entry.topic}}"</a> -
-    <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>:
-</div>
-<div class="panel-body">
-    {{ entry.text }}
-    <small>
-        <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
-    </small>
-    </dev>
-    <p>
-    </p>
-</div>
-</div>
-{% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+
 {% else %}
 <h3>
     <a href="{% url 'users:register' %}">Зарегистрируйтесь</a> или

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 
 
 class Blogtopic(models.Model):
-    '''Тема, которую изучает пользователь'''
     blogtext = models.CharField(max_length=200)
     blogdate_added = models.DateTimeField(auto_now_add=True)
     # blogowner=models.ForeignKey(User, on_delete=models.CASCADE)
@@ -14,7 +13,6 @@ class Blogtopic(models.Model):
 
 
 class Blogentry(models.Model):
-    '''информация, изученная по теме'''
     blogtopic = models.ForeignKey(Blogtopic, on_delete=models.CASCADE)
     blogentryowner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blogentryowner')
     blogtitle = models.CharField(max_length=150)
@@ -24,7 +22,7 @@ class Blogentry(models.Model):
     blogentryimage = models.ImageField(upload_to='images', blank=True, null=True)
 
     def __str__(self):
-        '''возвращает строковое представление модели'''
+        # возвращает строковое представление модели
         if len(self.blogtext) > 50:
             return self.blogtext[:50] + '...'
         else:

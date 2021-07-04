@@ -31,9 +31,13 @@
         {{ blogentry.blogtext|linebreaks }}
     </div>
     <div class="panel-body">
+      {% if end == 'needtoadd'%}
         <small>
             <a href="{% url 'blog:add_to_fav' blogentry.id %}">Добавить статью в избранное</a>
         </small>
+        {% else %}
+        <small><a href="{% url 'blog:remove_from_fav' blogentry.id %}"> Удалить статью из избранного</a></small>
+        {% endif %}
         {% if user == blogentry.blogentryowner %}
         <small>
             | <a href="{% url 'blog:edit_blogentry' blogentry.id %}">Редактировать статью</a>

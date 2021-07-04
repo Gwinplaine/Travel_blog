@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from datetime import datetime
 
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from .models import Blogtopic, Blogentry, Blogcomment
-from .forms import BlogtopicForm, BlogentryForm, BlogcommentForm
+from .forms import BlogentryForm, BlogcommentForm
 
 
 @login_required
@@ -66,6 +65,11 @@ def edit_blogentry(request, blogentry_id):
 def blogentry(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
     blogtopic = blogentry.blogtopic
+    if request.user not in blogentry.bloglike.all():
+        blogentry.bloglike.add(request.user)
+        end = 'needtoadd'
+    else:
+        end = 'Данная статья уже добавлена в избранное'
     all_comments = Blogcomment.objects.filter(blogpost=blogentry).order_by('blogcreated')
     if request.method != 'POST':
         form = BlogcommentForm()
@@ -78,7 +82,7 @@ def blogentry(request, blogentry_id):
             blogcomment.save()
             return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))
 
-    context = {'blogentry': blogentry, 'blogtopic': blogtopic, 'form': form, 'all_comments': all_comments}
+    context = {'blogentry': blogentry, 'blogtopic': blogtopic, 'form': form, 'all_comments': all_comments, 'end': end}
     return render(request, 'blog/blogentry.html', context)
 
 
@@ -97,7 +101,7 @@ def add_to_fav(request, blogentry_id):
     blogentry = Blogentry.objects.get(id=blogentry_id)
     if request.user not in blogentry.bloglike.all():
         blogentry.bloglike.add(request.user)
-        end = ''
+        end = 'needtoadd'
     else:
         end = 'Данная статья уже добавлена в избранное'
     return HttpResponseRedirect(reverse('blog:blogentry', args=[blogentry_id]))

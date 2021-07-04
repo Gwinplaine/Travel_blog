@@ -8,7 +8,6 @@
     margin: 0 auto;
     height: 300px;
   }
-
 </style>
 <h2>{{ entry.title }}</h2>
 <p>
@@ -32,9 +31,13 @@
         {{ entry.text|linebreaks }}
     </div>
     <div class="panel-body">
+      {% if end == 'needtoadd'%}
         <small>
             <a href="{% url 'add_to_fav' entry.id %}">Добавить статью в избранное</a>
         </small>
+        {% else %}
+        <small><a href="{% url 'remove_from_fav' entry.id %}"> Удалить статью из избранного</a></small>
+        {% endif %}
         {%if user.username == 'denis'%}
         <small>
             | <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
