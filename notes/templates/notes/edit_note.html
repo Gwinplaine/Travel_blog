@@ -10,7 +10,7 @@
     {% bootstrap_form form %}
 
     {% buttons %}
-    <button name="submit" class="btn btn-primary">Редактировать статью</button>
+    <button name="submit" class="btn btn-primary">Редактировать заметку</button>
     {% endbuttons %}
     <input type="hidden" name="next" value="{% url 'notes:note' note.id %}"/>
 </form>
