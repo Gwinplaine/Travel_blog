@@ -21,9 +21,9 @@
                     <small>Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
                     </small>
                     <br>
-                    Статья из раздела
-                    <a href="{% url 'topic' entry.topic.id %}"> "{{entry.topic}}"</a> -
-                    <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a>:
+                    Статья <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a><br>
+                    <small>Из раздела <a href="{% url 'topic' entry.topic.id %}"> "{{entry.topic}}"</a>
+                    </small>
                 </div>
                 <div class="panel-body" style="width: 530px">
                     {{ entry.text }}
@@ -46,9 +46,9 @@
                             {{blogentry.blogentryowner}}</a>
                     </small>
                     <br>
-                    Статья из раздела
-                    <a href="{% url 'blog:blogtopic' blogentry.blogtopic.id %}"> "{{blogentry.blogtopic}}"</a> -
-                    <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>:
+                    Статья <a href="{% url 'blog:blogtopic' blogentry.blogtopic.id %}"> "{{blogentry.blogtopic}}"</a><br>
+                    <small>Из раздела <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>
+                    </small>
                 </div>
                 <div class="panel-body" style="width: 530px">
                     {{ blogentry.blogtext }}
