@@ -75,7 +75,7 @@ def new_entry(request, topic_id):
         form = EntryForm(request.POST, request.FILES)
         if form.is_valid():
             new_entry = form.save(commit=False)
-            new_entry.topic = topic
+            #new_entry.topic = Topic.objects.get()        #topic
             new_entry.save()
             return HttpResponseRedirect(reverse('topic', args=[topic_id]))
     context = {'topic': topic, 'form': form}

@@ -97,7 +97,7 @@
     <form method="post" action="{% url 'users:login' %}" class="form">
         {% csrf_token %}
 
-        <img class="round" src="{% static 'images/default.jpg'%}" alt="" width="72" height="72">
+        <img class="round" src="{% static 'images/icons/plane.png'%}" alt="" width="72" height="72">
         <h1 class="h3 mb-3 fw-normal">Введите логин и пароль</h1>
         {% bootstrap_form form %}
         {% buttons %}

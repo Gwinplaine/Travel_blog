@@ -1,9 +1,8 @@
 {% extends "learning_logs/base.html" %}
 {% block header %}
 {% if user.is_authenticated %}
-<h3>Привет, {{ user.username }}, мы рады видеть тебя у нас!<br>
-    Что у нас новенького?<br>
-</h3>
+<center><h4>Привет, {{ user.username }}, мы скучали!
+</h4></center>
 {% endif %}
 {% endblock header %}
 
@@ -11,47 +10,37 @@
 {% load static %}
 
 {% if user.is_authenticated %}
-<div class="container">
+<div class="container-float">
     <div class="row">
-        <div class="col">
-            <h4>5 последних статей:</h4>
-            {%for entry in top%}
-            <div class="panel panel-default" style="width: 532px">
-                <div class="panel-heading" style="width: 530px">
-                    <small>Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
-                    </small>
-                    <br>
-                    Статья <a href="{% url 'entry' entry.id %}"> {{entry.title}}</a><br>
-                    <small>Из раздела <a href="{% url 'topic' entry.topic.id %}"> "{{entry.topic}}"</a>
-                    </small>
-                </div>
-                <div class="panel-body" style="width: 530px">
-                    {{ entry.text }}
-                    <small>
-                        <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
-                    </small>
-                </div>
-                <p>
-                </p>
-            </div>
-            {% endfor %}
+        <div class="col" style="width: 500px">
+          <br><br>
+          <a href="{% url 'topics' %}"><img src="{% static 'images/icons/mountains.png'%}" alt="" height="40"> Горы. Холмы. Леса. Степи</a><br>
+          <a href="{% url 'topics' %}"><img src="{% static 'images/icons/beach.png'%}" alt="" height="40"> Пляжи. Океаны. Моря. Озёра. Реки</a><br>
+          <a href="{% url 'topics' %}"><img src="{% static 'images/icons/coliseum.png'%}" alt="" height="40"> Архитектура. Столицы. Деревушки</a><br>
+          <a href="{% url 'topics' %}"><img src="{% static 'images/icons/highway.png'%}" alt="" height="40"> Лонгтрипы. Прелести и недостатки</a><br>
+          <a href="{% url 'topics' %}"><img src="{% static 'images/icons/pasta2.png'%}" alt="" height="40"> Еда. Ради чего стоит пролететь мир</a><br>
+          <a href="{% url 'topics' %}"><img src="{% static 'images/icons/rock.png'%}" alt="" height="40"> Концерты. Эмоции - навсегда</a><br>
         </div>
         <div class="col">
             <h4>5 последних постов блога:</h4>
             {%for blogentry in blogtop%}
-            <div class="panel panel-default" style="width: 532px">
-                <div class="panel-heading" style="width: 530px">
+            <div class="panel panel-default" style="width: 720px">
+                <div class="panel-heading" style="width: 718px">
+                  <center><img src="{{blogentry.blogentryimage.url}}" width='680px'></center>
+
+                </div>
+                <div class="panel-body" style="width: 530px">
+                    Статья <a href="{% url 'blog:blogtopic' blogentry.blogtopic.id %}"> "{{blogentry.blogtopic}}"</a><br>
+                    {{ blogentry.blogtext}} ...
+                    <br>
                     <small>Опубликовано {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
                         пользователем <a href="{% url 'blog:alluserentries' blogentry.blogentryowner.id %}">
                             {{blogentry.blogentryowner}}</a>
                     </small>
                     <br>
-                    Статья <a href="{% url 'blog:blogtopic' blogentry.blogtopic.id %}"> "{{blogentry.blogtopic}}"</a><br>
+
                     <small>Из раздела <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>
                     </small>
-                </div>
-                <div class="panel-body" style="width: 530px">
-                    {{ blogentry.blogtext }}
                     <small>
                         <a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a>
                     </small>
@@ -60,8 +49,17 @@
                 </p>
             </div>
 
+
             {% endfor %}
         </div>
+        <div class="col" style="width: 500px">
+          <br><br>
+          <center><img src="{% static 'images/ad.gif'%}" alt="" width="250"></center>
+          <br>
+
+          <center><img src="{% static 'images/ad2.gif'%}" alt="" width="250"></center>
+        </div>
+
     </div>
 
 

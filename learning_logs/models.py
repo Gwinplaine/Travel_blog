@@ -1,16 +1,20 @@
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 
 
 # создание модели раздела Topic с указанием названия раздела, создателя раздела, датой добавления и изображением раздела
 class Topic(models.Model):
-    text = models.CharField(max_length=200)
+    text = models.CharField(max_length=50)
+    
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     topicimage = models.ImageField(upload_to='images', default='images/defaultimage.png', blank=True, null=True)
 
     def __str__(self):
         return self.text
+
+
 
 
 # создание модели статей Entry с указанием привязанного к статье раздела, автора статьи, названия статьи,
@@ -23,6 +27,7 @@ class Entry(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     like = models.ManyToManyField(User, blank=True)
     entryimage = models.ImageField(upload_to='images', default='images/defaultimage.png', blank=True, null=True)
+        
 
     # указание множественного числа названия класса
     class Meta:
