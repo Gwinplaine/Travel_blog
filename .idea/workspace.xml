@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="722ddbff-d8fe-40be-ab47-7a80ec8ddb28" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/learning_log.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0002_alter_blogentry_options.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0003_auto_20210629_1950.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0004_auto_20210703_2011.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0005_alter_blogentry_blogtitle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0006_alter_blogtopic_blogtopicimage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0007_auto_20210704_1527.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0008_alter_blogentry_blogentryimage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0009_auto_20210704_1533.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/migrations/0010_auto_20210704_1535.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/alluserentries.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/alluserentries.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/blogentry.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/blogentry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/edit_blogentry.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/edit_blogentry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/new_blogentry.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/new_blogentry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/111.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/1544074685_logo-korrektirirovki-menyu-pp_dzhipeg.jpg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/5038740-logo-heart-of-petals-for-healthy-diet.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/7048458-alligator-lifting-heavy-barbell-weight-circle-masco.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/7d4064180bd23875e0d8316e8aa1ec02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/7d4064180bd23875e0d8316e8aa1ec02_FmyO02P.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/eda.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/eda_2fDbp2k.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/eda_BNmLiRi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/eda_IV2CDVT.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/eda_PtFKtD3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/eda_fUjuD1o.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/eda_kC8XbWM.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/eda_nnIDZHc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/entrydefault.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/shtanga.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/migrations/0002_alter_resttype_resttype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/migrations/0003_delete_resttype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/migrations/0004_remove_topic_resttype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/templates/learning_logs/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/templates/learning_logs/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/templates/learning_logs/edit_entry.html" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/templates/learning_logs/edit_entry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/templates/learning_logs/entry.html" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/templates/learning_logs/entry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/templates/learning_logs/favourites.html" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/templates/learning_logs/favourites.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/templates/learning_logs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/templates/learning_logs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/templates/learning_logs/new_entry.html" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/templates/learning_logs/new_entry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/templates/learning_logs/topic.html" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/templates/learning_logs/topic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/templates/learning_logs/topics.html" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/templates/learning_logs/topics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning_logs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/learning_logs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/-5399824084046559884_109_zby8Z0m.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/111.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/1544074685_logo-korrektirirovki-menyu-pp_dzhipeg.jpg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/1544074685_logo-korrektirirovki-menyu-pp_dzhipeg.jpg_ejM9afa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/1544074685_logo-korrektirirovki-menyu-pp_dzhipeg.jpg_tDpwGQM.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/2982116.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/2982116_1qU9XiB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/2cb4a6166f11575e553ed327287ddd1a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/36447.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/36447_uJTzc2X.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/5038740-logo-heart-of-petals-for-healthy-diet.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/5038740-logo-heart-of-petals-for-healthy-diet_JMo3rh1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/5038740-logo-heart-of-petals-for-healthy-diet_hk3QDOK.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/6928349-artichoke-healthy-vegetable-lifting-barbell.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/6928349-artichoke-healthy-vegetable-lifting-barbell_tA2EGyW.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7048458-alligator-lifting-heavy-barbell-weight-circle-masco.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7048458-alligator-lifting-heavy-barbell-weight-circle-masco_f9erS41.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7d4064180bd23875e0d8316e8aa1ec02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7d4064180bd23875e0d8316e8aa1ec02_FM78wkI.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7d4064180bd23875e0d8316e8aa1ec02_FeBiBvh.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7d4064180bd23875e0d8316e8aa1ec02_FmyO02P.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7d4064180bd23875e0d8316e8aa1ec02_QbCKcz8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7d4064180bd23875e0d8316e8aa1ec02_dnjdZnk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/7d4064180bd23875e0d8316e8aa1ec02_rgi7fir.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/937dd880e65c46a11366844a08d40268acc81919.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/937dd880e65c46a11366844a08d40268acc81919_0pqmoW6.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/937dd880e65c46a11366844a08d40268acc81919_9OPe8My.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/937dd880e65c46a11366844a08d40268acc81919_si8zsHl.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/937dd880e65c46a11366844a08d40268acc81919_vbi46lv.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/Zaglavnaya_Fullbody_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/Zaglavnaya_Fullbody_1_Anbq6Zz.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/appl.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/appl_1qgEDez.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/appl_56SbR64.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/appl_K4lIQhN.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/appl_Nx2Xqxd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/appl_WGeOpcc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/appl_xVBTnCq.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/appl_xW1bmUU.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/bf1a42cbe1f152ba4ce1f4734730605d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/blessyou.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/cute-design-with-green-brocolli_6997-1984.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/defaultimage.png" beforeDir="false" afterPath="$PROJECT_DIR$/media/images/defaultimage.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/depositphotos_125746758-stock-illustration-organic-food-logo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/depositphotos_187834370-stock-photo-creative-hand-drawn-collage-with.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/depositphotos_187834370-stock-photo-creative-hand-drawn-collage-with_9jtkm7T.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/depositphotos_187834370-stock-photo-creative-hand-drawn-collage-with_EkQBbJz.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/depositphotos_187834370-stock-photo-creative-hand-drawn-collage-with_Pggd96T.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/depositphotos_61142863-stock-illustration-healthy-food-logo-design-concept.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/domashnjaja-trenirovka-uprazhnenija-dlja-muzhchin_15859067672068727188.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/domashnjaja-trenirovka-uprazhnenija-dlja-muzhchin_15859067672068727188_6xXYEiS.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/domashnjaja-trenirovka-uprazhnenija-dlja-muzhchin_15859067672068727188_CVQuheu.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda_2fDbp2k.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda_BNmLiRi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda_IV2CDVT.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda_JiSGnLm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda_PtFKtD3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda_fUjuD1o.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda_kC8XbWM.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/eda_nnIDZHc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/entrydefault.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/example_iwXojZN.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/image3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/image3_leMrWVC.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/images.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/images_q2eqvG2.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/kisspng-logo-healthy-diet-health-food-gear-knife-and-fork-5a9a5eaaabe4a7.9585463315200662187041.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/menyu_dlya_muzhchin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/png-transparent-biceps-curl-barbell-dumbbell-physical-exercise-barbell-hand-human-sports-equipment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/png-transparent-biceps-curl-barbell-dumbbell-physical-exercise.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/png-transparent-biceps-curl-barbell-dumbbell-physical-exercise_iGpJTMq.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/pngtree-healthy-life-logo-design-vector-in-green-color-human-in-green-image_328956.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/scale_1200.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/scale_1200_N6XsH8J.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/scale_1200_WGnHlEP.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/scale_1200_WfncvzF.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/scale_1200_efdqIvs.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/scale_1200_wfg6CRb.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/shtanga.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/sport-i-zhenshhina.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/sport-i-zhenshhina_Xy0wDK7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/sport-i-zhenshhina_bjGhN0e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/sport2020.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/sport2020_4tzwbWk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/sport2020_Ie4j2Ss.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/unnamed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/images/Без названия.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/Gruntfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/css/bootstrap-theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/css/bootstrap-theme.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/css/bootstrap-theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/css/bootstrap-theme.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/css/bootstrap.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/css/bootstrap.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/dist/js/npm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/.jshintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/.stylelintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/browsers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/bs-commonjs-generator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/bs-glyphicons-data-generator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/bs-lessdoc-parser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/bs-raw-files-generator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/change-version.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/configBridge.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/generate-sri.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/grunt/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/affix.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/button.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/carousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/collapse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/dropdown.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/modal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/popover.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/scrollspy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/tab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/tooltip.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/js/transition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/alerts.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/badges.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/bootstrap.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/breadcrumbs.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/button-groups.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/buttons.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/carousel.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/close.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/code.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/component-animations.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/dropdowns.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/forms.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/glyphicons.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/grid.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/input-groups.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/jumbotron.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/labels.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/list-group.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/media.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/alerts.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/background-variant.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/border-radius.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/buttons.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/center-block.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/clearfix.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/forms.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/gradients.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/grid-framework.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/grid.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/hide-text.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/image.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/labels.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/list-group.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/nav-divider.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/nav-vertical-align.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/opacity.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/pagination.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/panels.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/progress-bar.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/reset-filter.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/reset-text.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/resize.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/responsive-visibility.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/size.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/tab-focus.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/table-row.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/text-emphasis.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/text-overflow.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/mixins/vendor-prefixes.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/modals.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/navbar.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/navs.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/normalize.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/pager.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/pagination.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/panels.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/popovers.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/print.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/progress-bars.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/responsive-embed.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/responsive-utilities.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/scaffolding.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/tables.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/theme.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/thumbnails.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/tooltip.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/type.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/utilities.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/variables.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/less/wells.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bootstrap/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/111.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/1544074685_logo-korrektirirovki-menyu-pp_dzhipeg.jpg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/2982116.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/2cb4a6166f11575e553ed327287ddd1a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/36447.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/36447_uJTzc2X.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/5038740-logo-heart-of-petals-for-healthy-diet.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/6928349-artichoke-healthy-vegetable-lifting-barbell.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/6928359-radish-healthy-vegetable-lifting-barbell-cartoon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/7048458-alligator-lifting-heavy-barbell-weight-circle-masco.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/7d4064180bd23875e0d8316e8aa1ec02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/7d4064180bd23875e0d8316e8aa1ec02_FmyO02P.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/937dd880e65c46a11366844a08d40268acc81919.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/Zaglavnaya_Fullbody_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/appl.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/bf1a42cbe1f152ba4ce1f4734730605d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/bless.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/blessyou.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/cute-design-with-green-brocolli_6997-1984.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/default.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/depositphotos_125746758-stock-illustration-organic-food-logo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/depositphotos_187834370-stock-photo-creative-hand-drawn-collage-with.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/depositphotos_61142863-stock-illustration-healthy-food-logo-design-concept.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/domashnjaja-trenirovka-uprazhnenija-dlja-muzhchin_15859067672068727188.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/eda.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/eda_2fDbp2k.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/eda_BNmLiRi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/eda_IV2CDVT.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/eda_PtFKtD3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/eda_fUjuD1o.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/eda_kC8XbWM.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/eda_nnIDZHc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/entrydefault.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/image3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/images.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/kisspng-logo-healthy-diet-health-food-gear-knife-and-fork-5a9a5eaaabe4a7.9585463315200662187041.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/login.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/menyu_dlya_muzhchin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/png-transparent-biceps-curl-barbell-dumbbell-physical-exercise.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/pngtree-healthy-life-logo-design-vector-in-green-color-human-in-green-image_328956.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/scale_1200.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/shtanga.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/sport2020.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/unnamed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/Без названия.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/логотип-вектора-штанги-сти-изованная-и-юстрация-93044710.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/login.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="1xYG7QfZKPPI94Voscc7MSZWEZ2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+    <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="learning_log" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/blog" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/blog/tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.tests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="722ddbff-d8fe-40be-ab47-7a80ec8ddb28" name="Default Changelist" comment="" />
+      <created>1630524444142</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1630524444142</updated>
+    </task>
+    <servers />
+  </component>
+</project>

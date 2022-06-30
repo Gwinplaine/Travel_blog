@@ -4,6 +4,7 @@ from django.conf.urls import url
 app_name = "blog"
 
 urlpatterns = [
+    url(r'^$', views.blog, name='blog'),
     url(r'^blogtopics/$', views.blogtopics, name='blogtopics'),
     url(r'^blogtopics/(?P<blogtopic_id>\d+)/$', views.blogtopic, name='blogtopic'),
     url(r'^new_blogentry/(?P<blogtopic_id>\d+)/$', views.new_blogentry, name='new_blogentry'),
@@ -17,4 +18,5 @@ urlpatterns = [
     url(r'^delete_blogentry/(?P<blogtopic_id>\d+)/(?P<blogentry_id>\d+)/$', views.delete_blogentry,
         name='delete_blogentry'),
     url(r'^alluserentries/(?P<user_id>\d+)/$', views.alluserentries, name='alluserentries'),
+    url(r'^myentries/(?P<user_id>\d+)/$', views.myentries, name='myentries'),
 ]

@@ -1,30 +1,61 @@
 {% extends "learning_logs/base.html" %}
 {% block header %}
-<div class='jumbotron' "row"=2>
-<div class="container"><h3>Все статьи пользователя {{blogentry.blogentryowner}}</h3>
-</div>
+<div class="container"><center><h3>Все статьи пользователя {{blogentry.blogentryowner}}</h3></center>
 </div>
 {% endblock header %}
 
 {% block content %}
 {% load static %}
 
+<div class="container-float">
+    <div class="row">
+        <div class="col" style="width: 500px">
+            <br><br>
+          
+        </div>
+        <div class="col">
+            
 {%for blogentry in alluserentries%}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <small>Опубликовано {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
-        </small>
+<div class="panel panel-default" style="width: 570px">
+    <div class="panel-heading" style="width: 568px">
+      <center><a href="{% url 'blog:blogentry' blogentry.id %}"><img src="{{blogentry.blogentryimage.url}}" width='540px'></a></center>
+
+    </div>
+    <div class="panel-body" style="width: 480px">
+        <a href="{% url 'blog:blogentry' blogentry.id %}"> "{{blogentry.blogtitle}}"</a><br>
+        {{ blogentry.blogtext }}<small><a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a></small>                    
         <br>
-        Статья из раздела
-        <a href="{% url 'blog:blogtopic' blogentry.blogtopic.id %}"> {{blogentry.blogtopic}}</a> -
-        <a href="{% url 'blog:blogentry' blogentry.id %}"> {{blogentry.blogtitle}}</a>:
-    </div>
-    <div class="panel-body">
-        {{ blogentry.blogtext }}
-        <small>
-            <a href="{% url 'blog:blogentry' blogentry.id %}">{{ read_more }}</a>
+
+        <small>Континент - {{blogentry.blogtopic}},
+        тип отдыха - {{blogentry.blogresttypes}}
         </small>
+        <h5><small>
+            Добавлено пользователем
+            <a href="{% url 'blog:alluserentries' blogentry.blogentryowner.id %}">{{blogentry.blogentryowner}} </a>
+            в {{ blogentry.blogdate_added|date:'d.m.Y в H:i' }}
+        </small></h5>
+        {% if user == blogentry.blogentryowner %}
+        <small>
+            <a href="{% url 'blog:edit_blogentry' blogentry.id %}">Редактировать статью</a>
+        </small>
+        <small>
+            | <a href="{% url 'blog:delete_blogentry' blogtopic.id blogentry.id %}">Удалить статью</a>
+        </small>
+        {%endif%}
     </div>
+
 </div>
+
 {% endfor %}
+</div>
+<div class="col" style="width: 500px">
+<br><br>
+<center><img src="{% static 'images/ad.gif'%}" alt="" width="250"></center>
+<br>
+
+<center><img src="{% static 'images/ad2.gif'%}" alt="" width="250"></center>
+</div>
+
 {% endblock content %}
+
+

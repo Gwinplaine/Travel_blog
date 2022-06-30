@@ -1,5 +1,5 @@
 from django import forms
-from .models import Topic, Entry, Comment
+from .models import Topic, Entry, Comment, Resttype
 
 # форма для модели Topic с указанием полей и их обозначениями
 class TopicForm(forms.ModelForm):
@@ -12,8 +12,8 @@ class TopicForm(forms.ModelForm):
 class EntryForm(forms.ModelForm):
     class Meta:
         model = Entry
-        fields = ['title', 'text', 'entryimage','topic']
-        labels = {'title': 'Название статьи', 'text': 'Содержимое статьи', 'entryimage': 'Загрузите изображение'}
+        fields = ['title', 'text', 'entryimage','topic', 'resttype']
+        labels = {'title': 'Название статьи', 'text': 'Содержимое статьи', 'entryimage': 'Загрузите изображение', 'topic':'Выберите континент', 'resttype':'Тип отдыха'}
         widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 
 # форма для модели Comment с указанием полей и их обозначениями

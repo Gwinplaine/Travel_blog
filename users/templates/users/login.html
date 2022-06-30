@@ -104,9 +104,11 @@
         <button name="submit" action="{% url 'users:login' %}" class="btn btn-primary">Войти</button>
         {% endbuttons %}
         <input type="hidden" name="next" value="{% url 'index' %}"/>
-        <p class="mt-5 mb-3 text-muted">©Denis Vashkevich 2021-...</p>
+        Ещё не зарегистрированы? <a href="{% url 'users:register' %}">Вперёд!</a>
+        
     </form>
 </main>
+
 {%endblock content%}
 
 

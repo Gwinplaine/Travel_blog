@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from blog.models import Blogtopic, Blogentry, Blogcomment
+from blog.models import Blogtopic, Blogentry, Blogcomment, Blogresttype
 
 # регистрация Blogtopic в админке
 admin.site.register(Blogtopic)
-
+admin.site.register(Blogresttype)
 
 # указание колонок для Blogentry в админке
 class BlogentryAdmin(admin.ModelAdmin):

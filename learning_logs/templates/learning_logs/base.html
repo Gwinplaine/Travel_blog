@@ -27,18 +27,19 @@
                                                                        height="20"></a></li>
                 <li><a href="{% url 'topics' %}"><img src="{% static 'images/icons/destination.png'%}" alt=""
                                                                        height="20">  По направлениям</a></li>
-                <li><a href="{% url 'blog:blogtopics' %}"><img src="{% static 'images/icons/beach.png'%}" alt=""
+                <li><a href="{% url 'types' %}"><img src="{% static 'images/icons/beach.png'%}" alt=""
                                                                        height="20">  По типам отдыха</a></li>
-                <li><a href="{% url 'favourites' %}"><img src="{% static 'images/icons/tourist.png'%}" alt=""
+                <li><a href="{% url 'blog:blog' %}"><img src="{% static 'images/icons/tourist.png'%}" alt=""
                                                                        height="20">  Блог наших читателей</a></li>
-
+                                                                       
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'blog:blogfavourites' %}"><img src="{% static 'images/icons/myentries.png'%}" alt=""
-                                                                       height="20">  Мои статьи</a></li>
-                <li><a href="{% url 'notes:notes' %}"><img src="{% static 'images/icons/favourites.png'%}" alt=""
+
+                <li><a href="{% url 'favourites' %}"><img src="{% static 'images/icons/favourites.png'%}" alt=""
                                                                        height="20">  Избранное</a></li>
                 {% if user.is_authenticated %}
+                <li><a href="{% url 'blog:myentries' user.id %}"><img src="{% static 'images/icons/myentries.png'%}" alt=""
+                    height="20">  Мои статьи</a></li>
                 <li><a>Привет, {{ user.username }}</a></li>
                 <li><a href="{% url 'users:logout' %}">Выйти из аккаунта</a></li>
                 {% else %}
@@ -50,7 +51,7 @@
     </div>
 </nav>
 <div class="container-xxl">
-    <div class="page-header">
+    <div>
         {% block header %}{% endblock header %}
     </div>
     <div>

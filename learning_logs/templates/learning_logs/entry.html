@@ -14,7 +14,7 @@
 <h2>{{ entry.title }}</h2>
 <p>
     <small>
-        <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
+        <a href="{% url 'topic' topic.id %}">Перейти ко всем статьям по направлению "{{ topic }}"</a>
     </small>
 </p>
 {% endblock header %}
@@ -71,7 +71,7 @@
         <p></p>
         <p>
             <small>
-                <a href="{% url 'topic' topic.id %}">Вернуться ко всем статьям темы "{{ topic }}"</a>
+                <a href="{% url 'topic' topic.id %}">Перейти ко всем статьям по направлению "{{ topic }}"</a>
             </small>
         </p>
     </div>
