@@ -1,7 +1,3 @@
-a = int(input())
-if a == 1000:
-    print('someshit')
-elif a == 1500:
-    print("another somesh#t")
-else:
-    print("f#ck off /|yPaK")
+from django.test import TestCase
+
+# Create your tests here.

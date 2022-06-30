@@ -1,0 +1,75 @@
+{% extends 'learning_logs/base.html' %}
+{% block header %}
+<center><h3>{{ type }}</h3></center>
+{% endblock header %}
+
+{% block content %}
+{% load static %}
+
+{%if user.username == 'denis'%}
+<div class="panel-body">
+        <center><a href="{% url 'new_entry' topic.id %}">Добавить новую статью</a></center>
+</div>
+{%endif%}
+
+
+<div class="container-float">
+    <div class="row">
+        <div class="col" style="width: 500px">
+          <br><br>
+          <a href="{% url 'type' 1 %}"><img src="{% static 'images/icons/mountains.png'%}" alt="" height="40"> Горы. Холмы. Леса. Степи</a><br>
+          <a href="{% url 'type' 2 %}"><img src="{% static 'images/icons/beach.png'%}" alt="" height="40"> Пляжи. Океаны. Моря. Озёра. Реки</a><br>
+          <a href="{% url 'type' 3 %}"><img src="{% static 'images/icons/highway.png'%}" alt="" height="40"> Лонгтрипы. Прелести и недостатки</a><br>
+          <a href="{% url 'type' 4 %}"><img src="{% static 'images/icons/coliseum.png'%}" alt="" height="40"> Архитектура. Столицы. Деревушки</a><br>
+          <a href="{% url 'type' 5 %}"><img src="{% static 'images/icons/rock.png'%}" alt="" height="40"> Концерты. Эмоции - навсегда</a><br>
+          <a href="{% url 'type' 6 %}"><img src="{% static 'images/icons/pasta2.png'%}" alt="" height="40"> Еда. Ради чего стоит пролететь мир</a><br>
+        </div>
+        <div class="col">
+            <h4>5 последних постов блога:</h4>
+            {%for entry in entries%}
+            <div class="panel panel-default" style="width: 570px">
+                <div class="panel-heading" style="width: 568px">
+                  <center><a href="{% url 'entry' entry.id %}"><img src="{{entry.entryimage.url}}" width='540px'></a></center>
+
+                </div>
+                <div class="panel-body" style="width: 480px">
+                    <h4><a href="{% url 'entry' entry.id %}"> "{{entry.title}}"</a></h4>
+                    {{ entry.text }} 
+                    <small>
+                        <a href="{% url 'entry' entry.id %}">{{ read_more }}</a>
+                    </small>                    
+                    <br>
+
+                    <small>Континент - <a href="{% url 'topic' entry.topic.id %}"> {{entry.topic}}</a>.
+                    Тип отдыха - <a href="{% url 'type' entry.resttype.id %}">{{entry.resttype}} </a>
+                    </small>
+                    <br>
+                    <small>
+                      Опубликовано {{ entry.date_added|date:'d.m.Y в H:i' }}
+                    </small>
+                    <br>
+                    {%if user.username == 'denis'%}
+                    <small>
+                        <a href="{% url 'edit_entry' entry.id %}">Редактировать статью</a>
+                    </small>
+                    <small>
+                        | <a href="{% url 'delete_entry' topic.id entry.id %}">Удалить статью</a>
+                    </small>
+                    {%endif%}
+                </div>
+
+            </div>
+
+            {% empty %}
+            Упс! По данному направлению ещё нет ни одной статьи...
+            {% endfor %}
+        </div>
+        <div class="col" style="width: 500px">
+          <br><br>
+          <center><img src="{% static 'images/ad.gif'%}" alt="" width="250"></center>
+          <br>
+          <center><img src="{% static 'images/ad2.gif'%}" alt="" width="250"></center>
+        </div>
+    </div>
+
+    {% endblock content %}

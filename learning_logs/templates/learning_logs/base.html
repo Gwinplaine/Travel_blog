@@ -12,7 +12,7 @@
     <script src="{% static 'vendor/jquery/jquery-3.6.0.js' %}"></script>
     <script src="{% static   'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <title>Будь здоров!</title>
+    <title>Путешествуйте!</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
@@ -21,23 +21,25 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}"> <img src="{% static 'images/bless.jpg'%}" alt="" width="90"
-                                                               height="41"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="{% url 'topics' %}">Статьи от профессионалов</a></li>
-                <li><a href="{% url 'blog:blogtopics' %}">Блог пользователей</a></li>
-                <li><a href="{% url 'favourites' %}">Избранное из статей</a></li>
-                <li><a href="{% url 'blog:blogfavourites' %}">Избранное из блога</a></li>
-                <li><a href="{% url 'notes:notes' %}">Мои заметки</a></li>
+                <li><a href="{% url 'index' %}"> <img src="{% static 'images/icons/planetitle.png'%}" alt=""
+                                                                       height="20"></a></li>
+                <li><a href="{% url 'topics' %}"><img src="{% static 'images/icons/destination.png'%}" alt=""
+                                                                       height="20">  По направлениям</a></li>
+                <li><a href="{% url 'types' %}"><img src="{% static 'images/icons/beach.png'%}" alt=""
+                                                                       height="20">  По типам отдыха</a></li>
+                <li><a href="{% url 'blog:blog' %}"><img src="{% static 'images/icons/tourist.png'%}" alt=""
+                                                                       height="20">  Блог наших читателей</a></li>
+                                                                       
             </ul>
             <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="{% url 'favourites' %}"><img src="{% static 'images/icons/favourites.png'%}" alt=""
+                                                                       height="20">  Избранное</a></li>
                 {% if user.is_authenticated %}
+                <li><a href="{% url 'blog:myentries' user.id %}"><img src="{% static 'images/icons/myentries.png'%}" alt=""
+                    height="20">  Мои статьи</a></li>
                 <li><a>Привет, {{ user.username }}</a></li>
                 <li><a href="{% url 'users:logout' %}">Выйти из аккаунта</a></li>
                 {% else %}
@@ -48,13 +50,17 @@
         </div>
     </div>
 </nav>
-<div class="container">
-    <div class="page-header">
+<div class="container-xxl">
+    <div>
         {% block header %}{% endblock header %}
     </div>
     <div>
         {% block content %}{% endblock content %}
     </div>
 </div>
+
 </body>
+<br>
+<center>Денис Вашкевич 3488927@gmail.com</center>
+<br>
 </html>

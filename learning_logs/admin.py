@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from learning_logs.models import Topic, Entry, Comment
+from learning_logs.models import Topic, Entry, Comment, Resttype
 
 # регистрация Topic в админке
 admin.site.register(Topic)
+admin.site.register(Resttype)
 
 
 # указание колонок для Entry в админке

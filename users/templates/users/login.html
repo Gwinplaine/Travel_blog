@@ -97,16 +97,18 @@
     <form method="post" action="{% url 'users:login' %}" class="form">
         {% csrf_token %}
 
-        <img class="round" src="{% static 'images/default.jpg'%}" alt="" width="72" height="72">
+        <img class="round" src="{% static 'images/icons/plane.png'%}" alt="" width="72" height="72">
         <h1 class="h3 mb-3 fw-normal">Введите логин и пароль</h1>
         {% bootstrap_form form %}
         {% buttons %}
         <button name="submit" action="{% url 'users:login' %}" class="btn btn-primary">Войти</button>
         {% endbuttons %}
         <input type="hidden" name="next" value="{% url 'index' %}"/>
-        <p class="mt-5 mb-3 text-muted">©Denis Vashkevich 2021-...</p>
+        Ещё не зарегистрированы? <a href="{% url 'users:register' %}">Вперёд!</a>
+        
     </form>
 </main>
+
 {%endblock content%}
 
 

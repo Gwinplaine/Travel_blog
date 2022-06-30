@@ -1,10 +1,11 @@
+from pickle import TRUE
 from django.shortcuts import render
 
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Topic, Entry, Comment
+from .models import Topic, Entry, Comment, Resttype
 from blog.models import Blogtopic, Blogentry
 from .forms import TopicForm, EntryForm, CommentForm
 
@@ -14,16 +15,23 @@ def index(request):
     top = Entry.objects.order_by('-date_added')[:5]
     blogtop = Blogentry.objects.order_by('-blogdate_added')[:5]
     read_more = '...продолжить читать статью'
+    context = {'top': top, 'read_more': read_more}
     for entry in top:
-        topic = entry.topic
-        id = topic.id
-        if len(entry.text) > 110:
-            entry.text = entry.text[:110]
+        if entry.text is not None:
+            topic = entry.topic
+            id = topic.id
+            context = {'top': top, 'read_more': read_more, 'topic': topic, 'id': id}
+        if len(entry.text) > 50:
+            entry.text = f"{entry.text[:50]}"
+        if len(entry.title) > 50:
+            entry.title = f"{entry.title[:50]}..."
     for blogentry in blogtop:
         if len(blogentry.blogtext) > 110:
             blogentry.blogtext = blogentry.blogtext[:110]
-    context = {'top': top, 'blogtop': blogtop, 'read_more': read_more, 'topic': topic, 'id': id}
+
     return render(request, 'learning_logs/index.html', context)
+
+
 
 
 # функция представления всех разделов на странице
@@ -75,9 +83,9 @@ def new_entry(request, topic_id):
         form = EntryForm(request.POST, request.FILES)
         if form.is_valid():
             new_entry = form.save(commit=False)
-            new_entry.topic = topic
+            #new_entry.topic = Topic.objects.get()        #topic
             new_entry.save()
-            return HttpResponseRedirect(reverse('topic', args=[topic_id]))
+            return HttpResponseRedirect(reverse('index'))
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
 
@@ -130,7 +138,7 @@ def entry(request, entry_id):
 @login_required
 def delete_entry(request, topic_id, entry_id):
     entry = Entry.objects.filter(id=entry_id).delete()
-    return HttpResponseRedirect(reverse('topic', args=[topic_id]))
+    return HttpResponseRedirect(reverse('index'))
 
 
 # функция добавления статьи в избранное
@@ -162,10 +170,17 @@ def remove_from_fav(request, entry_id):
 def favourites(request):
     favourites = Entry.objects.filter(like=request.user)
     read_more = '...продолжить читать статью'
+    context = {'favourites': favourites, 'read_more': read_more}
     for fav in favourites:
         if len(fav.text) > 50:
             fav.text = fav.text[:50]
-    context = {'favourites': favourites, 'read_more': read_more}
+        if fav.text is not None:
+            topic = fav.topic
+            id = fav.id
+            context = {'favourites': favourites, 'read_more': read_more, 'topic':topic, 'id':id}
+
+
+
     return render(request, 'learning_logs/favourites.html', context)
 
 
@@ -186,3 +201,23 @@ def edit_comment(request, entry_id, comment_id):
                 return HttpResponseRedirect(reverse('entry', args=[entry_id]))
     context = {'comment': comment, 'entry': entry, 'form': form}
     return render(request, 'learning_logs/edit_comment.html', context)
+
+# функция представления всех разделов на странице типов отдыха
+def types(request):
+    types = Resttype.objects.order_by('-text')
+    context = {'types': types}
+    return render(request, 'learning_logs/types.html', context)
+
+
+# функция представления всех статей раздела на странице типов отдыха
+def type(request, type_id):
+    type = Resttype.objects.get(id=type_id)
+    read_more = '...продолжить читать статью'
+    entries = type.entry_set.order_by('-date_added')
+    for entry in entries:
+        topic = entry.topic
+        id = topic.id
+        if len(entry.text) > 50:
+            entry.text = entry.text[:50]
+    context = {'type': type, 'entries': entries, 'read_more': read_more, 'topic': topic, 'id': id}
+    return render(request, 'learning_logs/type.html', context)

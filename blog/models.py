@@ -11,13 +11,19 @@ class Blogtopic(models.Model):
     def __str__(self):
         return self.blogtext
 
+class Blogresttype(models.Model):
+    blogtext = models.CharField(max_length=50)
+    blogtopicimage = models.ImageField(upload_to='images', default='images/defaultimage.png', blank=True, null=True)
 
+    def __str__(self):
+        return self.blogtext
 # создание модели статей Blogentry с указанием привязанного к статье раздела, автора статьи, названия статьи,
 # текста статьи, даты добавления статьи, атрибута like (ответственного за добавление в избранное) и привязанного
 # к статье изображения
 class Blogentry(models.Model):
     blogtopic = models.ForeignKey(Blogtopic, on_delete=models.CASCADE)
     blogentryowner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blogentryowner')
+    blogresttypes = models.ForeignKey(Blogresttype, on_delete=models.CASCADE, blank=True, null=True)
     blogtitle = models.CharField(max_length=150)
     blogtext = models.TextField()
     blogdate_added = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,5 @@
+from logging import NullHandler
 from django.shortcuts import render
-
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -9,6 +9,20 @@ from .forms import BlogentryForm, BlogcommentForm
 
 
 # функция представления всех разделов на странице
+def blog(request):
+    blogtop = Blogentry.objects.order_by('-blogdate_added')
+    read_more = '...продолжить читать статью'
+    for blogentry in blogtop:
+        blogtopic = blogentry.blogtopic
+        blockid = blogtopic.id
+        if len(blogentry.blogtext) > 50:
+            blogentry.blogtext = f"{blogentry.blogtext[:50]}"
+        if len(blogentry.blogtitle) > 50:
+            blogentry.blogtitle = f"{blogentry.blogtitle[:50]}..."
+    context = {'blogtop': blogtop, 'read_more': read_more, 'blogtopic': blogtopic, 'id': blockid}
+    return render(request, 'blog/blogindex.html', context)
+
+
 @login_required
 def blogtopics(request):
     blogtopics = Blogtopic.objects.order_by('blogdate_added')
@@ -42,7 +56,7 @@ def new_blogentry(request, blogtopic_id):
             new_blogentry.blogtopic = blogtopic
             new_blogentry.blogentryowner = request.user
             new_blogentry.save()
-            return HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic_id]))
+            return HttpResponseRedirect(reverse('blog:blog'))
     context = {'blogtopic': blogtopic, 'form': form}
     return render(request, 'blog/new_blogentry.html', context)
 
@@ -98,7 +112,7 @@ def delete_blogentry(request, blogtopic_id, blogentry_id):
     else:
         blogentry = Blogentry.objects.filter(id=blogentry_id)
         blogentry.delete()
-    return HttpResponseRedirect(reverse('blog:blogtopic', args=[blogtopic_id]))
+    return HttpResponseRedirect(reverse('blog:blog'))
 
 
 # функция добавления статьи в избранное
@@ -165,7 +179,27 @@ def alluserentries(request, user_id):
     alluserentries = Blogentry.objects.filter(blogentryowner=user_id).order_by('-blogdate_added')
     read_more = '...продолжить читать статью'
     for blogentry in alluserentries:
-        if len(blogentry.blogtext) > 110:
-            blogentry.blogtext = blogentry.blogtext[:110]
-    context = {'alluserentries': alluserentries, 'read_more': read_more, 'blogentry': blogentry}
+        blogtopic = blogentry.blogtopic
+        id = blogtopic.id
+        if len(blogentry.blogtext) > 50:
+            blogentry.blogtext = blogentry.blogtext[:50]
+    context = {'alluserentries': alluserentries, 'read_more': read_more, 'blogentry': blogentry, 'blogtopic': blogtopic,
+               'id': id}
     return render(request, 'blog/alluserentries.html', context)
+
+
+@login_required
+def myentries(request, user_id):
+    myentries = Blogentry.objects.filter(blogentryowner=user_id).order_by('-blogdate_added')
+    read_more = '...продолжить читать статью'
+    context = {'myentries': myentries, 'read_more': read_more}
+    for blogentry in myentries:
+        if blogentry.blogtext is not None:
+            blogtopic = blogentry.blogtopic
+            id = blogtopic.id
+            context = {'myentries': myentries, 'read_more': read_more, 'blogentry': blogentry, 'blogtopic': blogtopic,
+                       'id': id}
+        if len(blogentry.blogtext) > 50:
+            blogentry.blogtext = blogentry.blogtext[:50]
+
+    return render(request, 'blog/myentries.html', context)
